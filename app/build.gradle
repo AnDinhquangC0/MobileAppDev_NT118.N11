@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.mobileappdev_nt118n11'
-    compileSdk 32
+    compileSdk 24
 
     defaultConfig {
         applicationId "com.example.mobileappdev_nt118n11"
-        minSdk 29
-        targetSdk 32
+        minSdk 20
+        targetSdk 24
         versionCode 1
         versionName "1.0"
 
