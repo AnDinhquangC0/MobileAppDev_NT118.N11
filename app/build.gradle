@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.mobileappdev_nt118n11'
-    compileSdk 24
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.example.mobileappdev_nt118n11"
@@ -32,6 +32,8 @@ android {
 
 dependencies {
 
+//    implementation'com.cepheuen.elegant-number-button:lib:1.0.2'
+
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -42,7 +44,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //font
-    implementation "com.android.support:support-compat:24.0.0"
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'com.android.support:support-v4:28.0.0'
+
 
     //Rounded ImageView
     implementation'com.makeramen:roundedimageview:2.3.0'
