@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.1" />
         <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/font/amarante.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/font/font.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/font/lobster.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/layout/activity_food_detail.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/layout/activity_food_menu.xml" value="0.184375" />
         <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/CODING/MobileAppDevelop/MobileAppDev_NT118.N11/app/src/main/res/layout/food_item.xml" value="0.1" />
       </map>
     </option>
   </component>
