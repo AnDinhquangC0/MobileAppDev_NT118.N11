@@ -37,7 +37,7 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHo
         TextView name, type, price;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.food_image);
+//            image = (ImageView) itemView.findViewById(R.id.food_image);
             name = (TextView) itemView.findViewById(R.id.food_name);
             type = (TextView) itemView.findViewById(R.id.food_type);
             price = (TextView) itemView.findViewById(R.id.food_name);
