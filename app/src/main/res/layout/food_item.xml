@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,6 +11,14 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="130dp"
+            android:layout_height="110dp"
+            android:id="@+id/food_image"
+            android:layout_margin="10dp"
+            android:src="@drawable/background"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,9 +27,9 @@
             android:layout_marginLeft="4dp" >
 
             <TextView
+                android:id="@+id/food_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/food_name"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/amarante"
                 android:maxLines="1"
@@ -28,7 +37,8 @@
                 android:text="Name"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,16 +67,19 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="4dp"
+                android:visibility="visible"
+                tools:visibility="visible">
 
                 <ImageView
                     android:id="@+id/vnd_symbol"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:src="@drawable/vnd_symbol"
-                    android:tint="@color/orange"
                     app:layout_constraintBottom_toBottomOf="@+id/food_price"
-                    app:layout_constraintTop_toTopOf="@id/food_price" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/food_price"
+                    app:tint="@color/orange" />
 
                 <TextView
                     android:id="@+id/food_price"
