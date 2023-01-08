@@ -13,13 +13,22 @@
         android:theme="@style/Theme.MobileAppDev_NT118N11"
         tools:targetApi="31">
         <activity
+            android:name=".NavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.MobileAppDev_NT118N11.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".FoodDetailActivity"
             android:exported="false" />
         <activity
             android:name=".FoodMenuActivity"
             android:exported="false" />
-        <activity android:name=".SignIn"/>
-        <activity android:name=".SignUp"/>
+        <activity android:name=".SignIn" />
+        <activity android:name=".SignUp" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
