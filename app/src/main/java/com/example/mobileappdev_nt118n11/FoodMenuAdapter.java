@@ -1,5 +1,6 @@
 package com.example.mobileappdev_nt118n11;
 
+import android.content.Context;
 import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,12 @@ import java.util.List;
 public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHolder> {
 
     List<FoodMenuModel> list;
+    Context context;
+
+    public FoodMenuAdapter(List<FoodMenuModel> list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
 
     @NonNull
     @Override
