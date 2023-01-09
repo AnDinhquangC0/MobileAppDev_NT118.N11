@@ -1,10 +1,12 @@
 package com.example.mobileappdev_nt118n11;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SignIn extends AppCompatActivity {
     EditText edtPhone,edtPassword;
     Button btnSignIn;
+    TextView txtregister;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -29,6 +32,7 @@ public class SignIn extends AppCompatActivity {
         edtPassword =(EditText)findViewById(R.id.edt_password_si);
         edtPhone =(EditText) findViewById(R.id.edt_name_su);
         btnSignIn=(Button) findViewById(R.id.btn_Sign_Up);
+        txtregister=(TextView)findViewById(R.id.txt_register);
 
     //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -52,6 +56,8 @@ public class SignIn extends AppCompatActivity {
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
+                                Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                                startActivity(Home);
                             } else
                                 Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
                         }
@@ -68,5 +74,12 @@ public class SignIn extends AppCompatActivity {
                 });
             }
         });
-    }
+        txtregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signUp = new Intent(SignIn.this,SignUp.class);
+                startActivity(signUp);
+            }
+        });
+   }
 }
