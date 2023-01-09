@@ -1,0 +1,22 @@
+{
+  "User": {
+    "20520137": {
+      "Name": "TrucAnh",
+      "Password": "2222",
+      "Gmail": "20520137@gm.uit.edu.vn",
+      "Address": "Cantho"
+    },
+    "20520370": {
+      "Name": "QuangAn",
+      "Password": "1111",
+      "Gmail": "205201370@gm.uit.edu.vn",
+      "Address": "Binh Duong"
+    },
+    "20521866": {
+      "Name": "ThanhTam",
+      "Password": "0000",
+      "Gmail": "20521866@gm.uit.edu.vn",
+      "Address": "Quang Nam"
+    }
+  }
+}
