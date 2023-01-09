@@ -18,5 +18,140 @@
       "Gmail": "20521866@gm.uit.edu.vn",
       "Address": "Quang Nam"
     }
+  },
+  "Type": {
+    "01": {
+      "Name": "Đồ ăn"
+    },
+    "02": {
+      "Name": "Nước"
+    },
+    "03": {
+      "Name": "Bánh"
+    },
+    "04": {
+      "Name": "Ăn vặt"
+    }
+  },
+  "Food": {
+    "DA01": {
+      "Name": "Pizza",
+      "Foodtype": "Đồ ăn",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276709/pizza_hjldhx.jpg",
+      "Price": "79000",
+      "Descr": "Không"
+    },
+    "DA02": {
+      "Name": "Cơm cháy kho quẹt",
+      "Foodtype": "Đồ ăn",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276709/comchay_o3jgjn.webp",
+      "Price": "35000",
+      "Descr": "Không"
+    },
+    "DA03": {
+      "Name": "Phở bò",
+      "Foodtype": "Đồ ăn",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276710/pho_xljly4.webp",
+      "Price": "50000",
+      "Descr": "Không"
+    },
+    "DA04": {
+      "Name": "Tào phớ non chiên",
+      "Foodtype": "Đồ ăn",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276708/taophonon_u6ukwk.webp",
+      "Price": "65000",
+      "Descr": "Không"
+    },
+    "NU01": {
+      "Name": "Trà sữa truyền thống",
+      "Foodtype": "Nước",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276708/trasua_of4zgh.jpg",
+      "Price": "35000",
+      "Descr": "Không"
+    },
+    "NU02": {
+      "Name": "Trà trái cây",
+      "Foodtype": "Nước",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276708/tratraicay_nfpstz.jpg",
+      "Price": "45000",
+      "Descr": "Không"
+    },
+    "NU03": {
+      "Name": "Trà hoa cúc",
+      "Foodtype": "Nước",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276708/tra_hoa_cuc_jb4ds9.jpg",
+      "Price": "35000",
+      "Descr": "Không"
+    },
+    "NU04": {
+      "Name": "Bạc xỉu",
+      "Foodtype": "Nước",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276707/bacxiu-nethon_emtyjs.jpg",
+      "Price": "35000",
+      "Descr": "Không"
+    },
+    "NU05": {
+      "Name": "Sữa đậu nành",
+      "Foodtype": "Nước",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673281308/suadaunanh_e94cpl.jpg",
+      "Price": "10000",
+      "Descr": "Không"
+    },
+    "BA01": {
+      "Name": "Bánh trung thu",
+      "Foodtype": "Bánh",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276706/banhtrungthu_xe0evu.jpg",
+      "Price": "70000",
+      "Descr": "Không"
+    },
+    "BA02": {
+      "Name": "Bánh tiêu",
+      "Foodtype": "Bánh",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276707/banhtieu_n6ufqs.jpg",
+      "Price": "7000",
+      "Descr": "Không"
+    },
+    "BA03": {
+      "Name": "Bánh muffin chuối",
+      "Foodtype": "Bánh",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276707/muffin_ntyh8u.jpg",
+      "Price": "15000",
+      "Descr": "Không"
+    },
+    "BA04": {
+      "Name": "Bánh croissant",
+      "Foodtype": "Bánh",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276711/croissant_f2mcaa.png",
+      "Price": "15000",
+      "Descr": "Không"
+    },
+    "VF01": {
+      "Name": "Bánh tráng trộn",
+      "Foodtype": "Đồ ăn vặt",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276706/banhtrangtron_qzx6uf.jpg",
+      "Price": "15000",
+      "Descr": "Không"
+    },
+    "VF02": {
+      "Name": "Kem khoai lang",
+      "Foodtype": "Đồ ăn vặt",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276707/kemkhoailang_kvntqv.jpg",
+      "Price": "16000",
+      "Descr": "Không"
+    },
+    "VF03": {
+      "Name": "Sâm bổ lượng",
+      "Foodtype": "Đồ ăn vặt",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276706/samboluong_wg5j5h.webp",
+      "Price": "20000",
+      "Descr": "Không"
+    },
+    "VF04": {
+      "Name": "Chân gà nướng mật ong",
+      "Foodtype": "Đồ ăn vặt",
+      "Image": "https://res.cloudinary.com/dp1nqdsna/image/upload/v1673276707/changanuong_gpetqy.jpg",
+      "Price": "20000",
+      "Descr": "Không"
+    }
   }
 }
