@@ -60,7 +60,7 @@
             android:layout_height="match_parent"
             android:id="@+id/nested_scroll_view"
             android:clipToPadding="false"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,8 +150,7 @@
                                 android:layout_height="24dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
-                                android:src="@drawable/vnd_symbol"
-                                android:foregroundGravity="right|"/>
+                                android:src="@drawable/vnd_symbol"/>
 
 
                         </LinearLayout>
