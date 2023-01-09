@@ -62,6 +62,7 @@
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,8 +153,6 @@
                                 android:layout_weight="1"
                                 android:src="@drawable/vnd_symbol"
                                 android:foregroundGravity="right"/>
-
-
                         </LinearLayout>
 
 
