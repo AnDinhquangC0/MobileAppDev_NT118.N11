@@ -81,5 +81,5 @@ public class SignIn extends AppCompatActivity {
                 startActivity(signUp);
             }
         });
-    }
+   }
 }
