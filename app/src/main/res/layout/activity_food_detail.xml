@@ -151,7 +151,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:src="@drawable/vnd_symbol"
-                                android:foregroundGravity="right|"/>
+                                android:foregroundGravity="right"/>
 
 
                         </LinearLayout>
