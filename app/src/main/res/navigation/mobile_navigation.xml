@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.mobileappdev_nt118n11.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
         android:id="@+id/nav_favourite"
         android:name="com.example.mobileappdev_nt118n11.ui.favourite.FavouriteFragment"
         android:label="@string/menu_favourite"
