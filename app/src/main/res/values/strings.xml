@@ -9,11 +9,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_favourite">Favourite</string>
-    <string name="menu_cart">My cart</string>
-    <string name="menu_logout">Log out</string>
-    <string name="menu_profile">Profile</string>
+    <string name="menu_home">Trang chủ</string>
+    <string name="menu_favourite">Món ăn yêu thích</string>
+    <string name="menu_cart">Giỏ hàng</string>
+    <string name="menu_logout">Đăng xuất</string>
+    <string name="menu_profile">Thông tin cá nhân</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
