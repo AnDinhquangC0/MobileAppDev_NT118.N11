@@ -61,19 +61,24 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'com.google.firebase:firebase-database:20.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
 
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
+
+    //Picasso for image downloading
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
 
-
-
-
-    //font
-//    implementation 'com.android.support:appcompat-v7:28.0.0'
-//    implementation 'com.android.support:support-v4:28.0.0'
     //Rounded ImageView
     implementation'com.makeramen:roundedimageview:2.3.0'
 
