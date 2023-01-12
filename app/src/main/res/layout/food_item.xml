@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="5dp">
 
@@ -12,8 +12,9 @@
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="130dp"
-            android:layout_height="110dp"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_weight="1"
             android:id="@+id/food_image"
             android:layout_margin="10dp"
             android:src="@drawable/background"
@@ -22,54 +23,55 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:orientation="vertical"
-            android:layout_marginLeft="4dp" >
+            android:layout_weight="1.5"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/food_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_weight="1.1"
                 android:fontFamily="@font/amarante"
-                android:maxLines="1"
-                android:singleLine="true"
+                android:maxLines="2"
+                android:singleLine="false"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:gravity="bottom"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_weight="0.5">
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:src="@drawable/ic_baseline_fastfood_24"
-                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center_vertical"
                     app:tint="@color/orange"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/food_type"
                     android:text="Phở"
                     android:fontFamily="@font/lobster"
                     android:layout_marginLeft="2dp"
-                    android:gravity="center_vertical" />
-
-
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:visibility="visible"
-                tools:visibility="visible">
+                android:orientation="horizontal"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/vnd_symbol"
@@ -77,23 +79,22 @@
                     android:layout_height="15dp"
                     android:src="@drawable/vnd_symbol"
                     app:layout_constraintBottom_toBottomOf="@+id/food_price"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/food_price"
+                    android:layout_gravity="center_vertical"
                     app:tint="@color/orange" />
 
                 <TextView
                     android:id="@+id/food_price"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:fontFamily="@font/lobster"
                     android:text="120.000"
+                    android:textSize="15dp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/vnd_symbol"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@color/black"/>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
 
         </LinearLayout>
