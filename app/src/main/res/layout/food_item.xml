@@ -12,13 +12,13 @@
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/food_image"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:layout_weight="1"
-            android:id="@+id/food_image"
             android:layout_margin="10dp"
-            android:src="@drawable/background"
+            android:layout_weight="1"
             android:scaleType="centerCrop"
+            android:src="@drawable/background"
             app:riv_corner_radius="24dp" />
 
         <LinearLayout
