@@ -56,7 +56,7 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHo
                 }
                 else{
                     Intent intent = new Intent(context, FoodDetailActivity.class);
-                    intent.putExtra("key", foodModel.getId());
+                    intent.putExtra("idKey", foodModel.getId());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

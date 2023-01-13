@@ -49,9 +49,9 @@ public class FoodDetailActivity extends AppCompatActivity {
         tvQuantity = (TextView) findViewById(R.id.tv_number);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("key");
+        String id = intent.getStringExtra("idKey");
 
-        Log.i("Key in food detail",id);
+        //Log.i("Key in food detail",id);
 
         database = FirebaseDatabase.getInstance();
         database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
