@@ -1,5 +1,6 @@
 package com.example.mobileappdev_nt118n11;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,19 +21,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignIn extends AppCompatActivity {
-    EditText edtPhone,edtPassword;
+    EditText etUsername,etPassword;
     Button btnSignIn;
-    TextView txtregister;
+    TextView tvRegister;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        edtPassword =(EditText)findViewById(R.id.edt_password_si);
-        edtPhone =(EditText) findViewById(R.id.edt_name_su);
-        btnSignIn=(Button) findViewById(R.id.btn_Sign_Up);
-        txtregister=(TextView)findViewById(R.id.txt_register);
+        etPassword =(EditText)findViewById(R.id.et_signin_password);
+        etUsername =(EditText) findViewById(R.id.et_signin_username);
+        btnSignIn=(Button) findViewById(R.id.btn_Sign_In);
+        tvRegister=(TextView)findViewById(R.id.tv_signin_register);
 
     //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -50,10 +52,10 @@ public class SignIn extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                        if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
                             mDialog.dismiss();
-                            User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                            if (user.getPassword().equals(edtPassword.getText().toString())) {
+                            User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
+                            if (user.getPassword().equals(etPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
                                 Intent Home = new Intent(SignIn.this,NavigationActivity.class);
                                 startActivity(Home);
@@ -73,7 +75,7 @@ public class SignIn extends AppCompatActivity {
                 });
             }
         });
-        txtregister.setOnClickListener(new View.OnClickListener() {
+        tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signUp = new Intent(SignIn.this,SignUp.class);

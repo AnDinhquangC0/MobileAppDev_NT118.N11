@@ -1,5 +1,6 @@
 package com.example.mobileappdev_nt118n11;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,22 +21,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
-    EditText edtPhone, edtName, edtPassword,edtGmail,edtAddress;
+    EditText etName, etPassword, etPhone,etEmail,etAddress;
     Button btnSignUp;
-    TextView txtSignIn;
+    TextView tvSignIn;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        edtName=(EditText) findViewById(R.id.edt_name_su);
-        edtPassword=(EditText) findViewById(R.id.edt_password_su);
-        edtPhone=(EditText) findViewById(R.id.edt_phone_su);
-        edtGmail=(EditText) findViewById(R.id.edt_gmail_su);
-        edtAddress=(EditText) findViewById(R.id.edt_address_su);
+        etName=(EditText) findViewById(R.id.et_signup_name);
+        etPassword=(EditText) findViewById(R.id.et_signin_password);
+        etPhone=(EditText) findViewById(R.id.et_signup_phone);
+        etEmail=(EditText) findViewById(R.id.et_signup_email);
+        etAddress=(EditText) findViewById(R.id.et_signup_address);
         btnSignUp=(Button) findViewById(R.id.btn_Sign_Up);
-        txtSignIn=(TextView)findViewById(R.id.txt_sign_in);
+        tvSignIn=(TextView)findViewById(R.id.tv_signup_login);
 
         //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -54,7 +56,7 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     // Check if already user phone
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists())
+                        if(dataSnapshot.child(etPhone.getText().toString()).exists())
                         {
                             mDialog.dismiss();
                             Toast.makeText(SignUp.this, "Phone Number already register !", Toast.LENGTH_SHORT).show();
@@ -62,8 +64,8 @@ public class SignUp extends AppCompatActivity {
                         else
                         {
                             mDialog.dismiss();
-                            User user =new User(edtName.getText().toString(),edtPassword.getText().toString(),edtGmail.getText().toString(),edtAddress.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
+                            User user =new User(etName.getText().toString(),etPassword.getText().toString(),etEmail.getText().toString(),etAddress.getText().toString());
+                            table_user.child(etPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUp.this, "Sign Up Successfully !", Toast.LENGTH_SHORT).show();
                             Intent signIn = new Intent(SignUp.this,SignIn.class);
                             startActivity(signIn);
@@ -80,7 +82,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        txtSignIn.setOnClickListener(new View.OnClickListener() {
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signIn = new Intent(SignUp.this,SignIn.class);

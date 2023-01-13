@@ -7,26 +7,29 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageView
+        android:id="@+id/img_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_baseline_person_outline_24"/>
+        android:src="@drawable/ic_baseline_person_outline_24"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
         android:background="@drawable/border"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"
+        app:layout_constraintBottom_toTopOf="@id/btn_profile_Edit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="160dp"
-        android:layout_marginBottom="170dp"
+        app:layout_constraintVertical_bias="0.3"
         android:layout_marginHorizontal="20dp"
         android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
         >
 
         <TextView
@@ -35,15 +38,15 @@
             android:fontFamily="sans-serif-light"
             android:text="Name"
             android:textColor="@color/light_orange"
-            android:textSize="15dp" />
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
+            android:id="@+id/tv_profile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
             android:text="Truc Anh"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="@dimen/text_size_middle" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,14 +54,14 @@
             android:fontFamily="sans-serif-light"
             android:text="Số điện thoại"
             android:textColor="@color/light_orange"
-            android:textSize="15dp" />
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
+            android:id="@+id/tv_profile_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_middle"
             android:text="0123456789"/>
 
         <TextView
@@ -66,15 +69,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/light_orange"
-            android:textSize="15dp"
+            android:textSize="@dimen/text_size_small"
             android:text="Email"/>
 
         <TextView
+            android:id="@+id/tv_profile_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_middle"
             android:text="trucanh@gmail.com"/>
 
         <TextView
@@ -82,13 +85,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/light_orange"
-            android:textSize="15dp"
+            android:textSize="@dimen/text_size_small"
             android:text="Địa chỉ"/>
 
         <TextView
+            android:id="@+id/tv_profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
             android:text="TP HCM"
             android:textColor="@color/black"
             android:textSize="20dp" />
@@ -103,6 +106,7 @@
         android:backgroundTint="@color/orange"
         android:textColor="@color/white"
         android:text="Chỉnh sửa thông tin"
+        android:textSize="@dimen/btn_text"
         app:layout_constraintWidth_percent=".7"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toTopOf="@id/btn_profile_ChangePass"
@@ -119,12 +123,11 @@
         android:backgroundTint="@color/orange"
         android:textColor="@color/white"
         android:text="Đổi mật khẩu"
-        app:layout_constraintWidth_percent=".7"
-        app:layout_constraintHeight_percent=".7"
+        android:textSize="@dimen/btn_text"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="180dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
