@@ -16,4 +16,7 @@
     <color name="dark_gray">#4C4E52</color>
     <color name="medium_gray">#B8B8B7</color>
     <color name="light_orange_star">#ffb38a</color>
+    <color name="pink">#ff6699</color>
+    <color name="other_red">#bf2a28</color>
+
 </resources>
