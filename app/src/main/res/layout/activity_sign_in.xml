@@ -4,149 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_signin_appname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/lobster"
         android:text="@string/name"
         android:textColor="@color/orange"
-        android:textSize="40dp"
-        app:layout_constraintHorizontal_bias="0.496"
+        android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_signin_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên đăng nhập"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_size_small"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_appname"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"/>
+
     <EditText
-        android:id="@+id/edt_name_su"
+        android:id="@+id/et_signin_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="phone"
         android:text="20521866"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="@dimen/text_size_middle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_signin_username"
+        android:layout_marginHorizontal="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_signin_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mật khẩu"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_size_small"
+        android:fontFamily="sans-serif-light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_signin_username"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/edt_password_si"
+        android:id="@+id/et_signin_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
         android:inputType="textPassword"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name_su" />
+        android:textSize="@dimen/text_size_middle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_signin_pass"
+        android:layout_marginHorizontal="24dp"/>
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="4dp"
-        android:text="Password"
-        android:textColor="#ff3300"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/edt_password_si"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Phone Number"
-        android:textColor="#ff3300"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/edt_name_su"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_Sign_Up"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_design"
-        android:text="SIGN IN"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:backgroundTint="#ff3300"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password_si"
-        app:layout_constraintVertical_bias="0.766" />
-
-    <TextView
-        android:id="@+id/txt_forget"
+        android:id="@+id/tv_sign_forget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="Forget Password?"
-        android:textColor="#109134"
-        android:textSize="24sp"
+        android:text="Quên mật khẩu?"
+        android:textColor="@color/green"
+        android:textSize="@dimen/text_size_small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password_si" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Don't Have An Account?"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Sign_Up"
-        app:layout_constraintVertical_bias="0.468" />
-
-    <TextView
-        android:id="@+id/txt_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Register"
-        android:textColor="#ff3300"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Sign_Up"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="153dp"
-        android:layout_height="192dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        android:id="@+id/img_signin"
+        android:layout_width="170dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.697"
-        app:srcCompat="@drawable/signinup" />
+        app:layout_constraintTop_toBottomOf="@id/tv_sign_forget"
+        app:layout_constraintBottom_toTopOf="@id/btn_Sign_In"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@drawable/signin_image" />
+
+    <Button
+        android:id="@+id/btn_Sign_In"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_design"
+        android:text="ĐĂNG NHẬP"
+        android:textSize="@dimen/btn_text"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_signin_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tạo tài khoản"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Sign_In"
+        app:layout_constraintVertical_bias="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
