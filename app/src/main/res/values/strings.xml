@@ -4,7 +4,7 @@
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">Admin</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -14,6 +14,14 @@
     <string name="menu_cart">Giỏ hàng</string>
     <string name="menu_logout">Đăng xuất</string>
     <string name="menu_profile">Thông tin cá nhân</string>
+    <string name="menu_menu">Món ăn</string>
+    <string name="menu_type">Phân loại</string>
+    <string name="menu_unpaid">Đơn chờ</string>
+    <string name="menu_paid">Đơn đã kiểm</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_management">ManagementActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>
