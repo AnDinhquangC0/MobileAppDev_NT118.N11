@@ -1,4 +1,4 @@
-package com.example.mobileappdev_nt118n11.ui;
+package com.example.mobileappdev_nt118n11.fragments;
 
 import android.os.Bundle;
 
@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 
 import com.example.mobileappdev_nt118n11.R;
 
-public class UnpaidFragment extends Fragment {
+
+public class PaidFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_unpaid, container, false);
+        View root = inflater.inflate(R.layout.fragment_paid, container, false);
 
         return root;
     }

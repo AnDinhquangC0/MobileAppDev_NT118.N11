@@ -17,15 +17,9 @@
         android:label="@string/menu_type"
         tools:layout="@layout/fragment_type" />
     <fragment
-        android:id="@+id/nav_unpaid"
-        android:name="com.example.mobileappdev_nt118n11.ui.UnpaidFragment"
-        android:label="@string/menu_unpaid"
-        tools:layout="@layout/fragment_unpaid" />
-    <fragment
-        android:id="@+id/nav_paid"
-        android:name="com.example.mobileappdev_nt118n11.ui.PaidFragment"
-        android:label="@string/menu_paid"
-        tools:layout="@layout/fragment_paid" />
-
+        android:id="@+id/nav_orders"
+        android:name="com.example.mobileappdev_nt118n11.ui.OrdersFragment"
+        android:label="@string/menu_type"
+        tools:layout="@layout/fragment_orders" />
 
 </navigation>
