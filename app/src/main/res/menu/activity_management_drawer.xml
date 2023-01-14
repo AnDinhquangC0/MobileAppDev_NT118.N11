@@ -15,14 +15,9 @@
             android:title="@string/menu_type" />
 
         <item
-            android:id="@+id/nav_unpaid"
-            android:icon="@drawable/ic_baseline_watch_later_24"
-            android:title="@string/menu_unpaid" />
-
-        <item
-            android:id="@+id/nav_paid"
-            android:icon="@drawable/ic_baseline_attach_money_24"
-            android:title="@string/menu_paid" />
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_baseline_wysiwyg_24"
+            android:title="@string/menu_orders" />
 
         <item
             android:id="@+id/nav_management_logout"
