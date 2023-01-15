@@ -1,16 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.MenuFragment">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    tools:context=".ui.MenuFragment"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
-    <TextView
+    <EditText
+        android:id="@+id/menu_search_bar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/amita"
+        android:singleLine="true"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawableTint="@color/white"
+        android:background="@drawable/search_background"
+        android:drawablePadding="9dp"
+        android:padding="12dp"
+        android:layout_margin="8dp"
+        android:hint="Chạm để biết ăn gì nè!"
+        android:textColorHint="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/menu_image_person"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_baseline_person_24"
+        android:padding="10dp"
+        android:background="@drawable/search_background"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/menu_search_bar"
+        app:layout_constraintBottom_toBottomOf="@id/menu_search_bar"
+        app:layout_constraintStart_toEndOf="@id/menu_search_bar" />
+
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/menu_menu"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@id/menu_search_bar">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/menu_tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/amita"
+                android:text="Món phổ biến cho bạn"
+                android:textColor="@color/light_orange"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menu_recycler_food_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/menu_tv_question"
+                android:scrollbars="vertical"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
