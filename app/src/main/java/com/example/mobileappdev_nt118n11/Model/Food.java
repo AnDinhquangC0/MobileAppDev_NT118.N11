@@ -1,4 +1,4 @@
-package com.example.mobileappdev_nt118n11;
+package com.example.mobileappdev_nt118n11.Model;
 
 public class Food {
     private String Id;

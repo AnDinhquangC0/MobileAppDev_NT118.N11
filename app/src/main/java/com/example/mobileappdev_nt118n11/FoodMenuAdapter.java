@@ -2,7 +2,6 @@ package com.example.mobileappdev_nt118n11;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mobileappdev_nt118n11.ui.home.HomeFragment;
+import com.example.mobileappdev_nt118n11.Model.Food;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHolder> {
 

@@ -42,9 +42,7 @@
         <activity
             android:name=".FoodDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".FoodMenuActivity"
-            android:exported="false" />
+
         <activity android:name=".SignIn" />
         <activity android:name=".SignUp" />
         <activity
