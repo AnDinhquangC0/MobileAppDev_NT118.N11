@@ -58,6 +58,7 @@ public class SignIn extends AppCompatActivity {
                             if (user.getPassword().equals(etPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
                                 Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                                Home.putExtra("KEY", etUsername.getText().toString());
                                 startActivity(Home);
                             } else
                                 Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
