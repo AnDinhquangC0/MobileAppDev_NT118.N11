@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobileappdev_nt118n11.Model.User;
+import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +65,7 @@ public class SignIn extends AppCompatActivity {
                                 if (user.getPassword().equals(etPassword.getText().toString())) {
                                     Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
                                     Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                                    Phone.Key_Phone=etUsername.getText().toString().trim();
                                     startActivity(Home);
                                 } else
                                     Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
