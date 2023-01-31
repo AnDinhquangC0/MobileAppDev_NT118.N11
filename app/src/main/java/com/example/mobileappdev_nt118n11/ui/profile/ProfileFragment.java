@@ -32,12 +32,13 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         init(root);
 
-        key = "20520137";
+        key = Phone.Key_Phone;
         database = FirebaseDatabase.getInstance();
         database.getReference().child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.child(key).getValue(User.class);
+                tvPhone.setText(key);
                 tvName.setText(user.getName());
                 tvEmail.setText(user.getGmail());
                 tvAddress.setText(user.getAddress());
