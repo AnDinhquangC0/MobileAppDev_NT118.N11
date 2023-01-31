@@ -48,31 +48,39 @@ public class SignIn extends AppCompatActivity {
                 mDialog.setMessage("Please waiting....");
                 mDialog.show();
 
-
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
-                            mDialog.dismiss();
-                            User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
-                            if (user.getPassword().equals(etPassword.getText().toString())) {
-                                Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
-                                Intent Home = new Intent(SignIn.this,NavigationActivity.class);
-                                startActivity(Home);
-                            } else
-                                Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
+                if(etUsername.getText().toString().equals("118118118")&&etPassword.getText().toString().equals("NT118.N11"))
+                {
+                    Toast.makeText(SignIn.this, "Sign in with Admin Successfull !", Toast.LENGTH_SHORT).show();
+                    Intent Management = new Intent(SignIn.this,ManagementActivity.class);
+                    startActivity(Management);
+                }
+                else{
+                    table_user.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
+                                mDialog.dismiss();
+                                User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
+                                if (user.getPassword().equals(etPassword.getText().toString())) {
+                                    Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
+                                    Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                                    startActivity(Home);
+                                } else
+                                    Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(SignIn.this,"User not exist",Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else
-                        {
-                            Toast.makeText(SignIn.this,"User not exist",Toast.LENGTH_SHORT).show();
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
-                    }
+                    });
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
         tvRegister.setOnClickListener(new View.OnClickListener() {
