@@ -1,7 +1,5 @@
 package com.example.mobileappdev_nt118n11.ui.profile;
 
-import static com.example.mobileappdev_nt118n11.NavigationActivity.UserKey;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private String key;
     private FirebaseDatabase database;
     private TextView tvName, tvPhone, tvEmail, tvAddress;
 
@@ -33,11 +32,13 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         init(root);
 
+        key = Phone.Key_Phone;
         database = FirebaseDatabase.getInstance();
         database.getReference().child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.child(UserKey).getValue(User.class);
+                User user = snapshot.child(key).getValue(User.class);
+                tvPhone.setText(key);
                 tvName.setText(user.getName());
                 tvEmail.setText(user.getGmail());
                 tvAddress.setText(user.getAddress());
