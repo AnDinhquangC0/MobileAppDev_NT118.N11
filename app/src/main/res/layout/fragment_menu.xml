@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.MenuFragment"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:padding="10dp">
 
     <EditText
         android:id="@+id/search_bar_menu"
@@ -45,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/filter_admin_menu"
-        app:layout_constraintBottom_toTopOf="@id/btn_admin_add_food">
+        app:layout_constraintBottom_toBottomOf="parent" >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_admin_menu"
@@ -54,16 +53,32 @@
             android:scrollbars="vertical"/>
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_admin_add_food"
-        android:text="Thêm món"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btn_add_food"
+        android:src="@drawable/ic_baseline_playlist_add_24"
+        android:tint="@color/white"
+        android:backgroundTint="@color/light_orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_admin_menu"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_edit_foodtype"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:tint="@color/white"
+        android:backgroundTint="@color/light_orange"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_food"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
