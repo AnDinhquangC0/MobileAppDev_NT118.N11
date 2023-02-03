@@ -40,7 +40,7 @@
             android:textColor="@color/light_orange"
             android:textSize="@dimen/text_size_small" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_profile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             android:textSize="@dimen/text_size_small"
             android:text="Email"/>
 
-        <TextView
+        <EditText
             android:id="@+id/tv_profile_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             android:textSize="@dimen/text_size_small"
             android:text="Địa chỉ"/>
 
-        <TextView
+        <EditText
             android:id="@+id/tv_profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
