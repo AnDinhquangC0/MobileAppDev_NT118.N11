@@ -1,5 +1,6 @@
 package com.example.mobileappdev_nt118n11.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase database;
     private TextView tvPhone;
     private EditText edName, edEmail,edAddress;
-    private Button btnUpdate;
+    private Button btnUpdate, btnChangePass;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -64,6 +65,14 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+        btnChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ChangePass = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(ChangePass);
+                getActivity().finish();
+            }
+        });
         return root;
     }
 
@@ -73,5 +82,6 @@ public class ProfileFragment extends Fragment {
         edEmail = root.findViewById(R.id.tv_profile_email);
         edAddress = root.findViewById(R.id.tv_profile_address);
         btnUpdate =root.findViewById(R.id.btn_profile_Edit);
+        btnChangePass=root.findViewById(R.id.btn_profile_ChangePass);
     }
 }

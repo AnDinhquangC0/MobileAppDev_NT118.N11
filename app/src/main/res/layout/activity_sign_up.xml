@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_signup_appname"
+        android:id="@+id/tv_changepassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_signup_name"
+        android:id="@+id/tv_changepass_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Họ và tên"
@@ -28,7 +28,7 @@
         android:textColor="@color/orange"
         android:fontFamily="sans-serif-light"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_appname"
+        app:layout_constraintTop_toBottomOf="@+id/tv_changepassword"
         android:layout_marginStart="24dp"
         android:layout_marginTop="30dp"/>
 
@@ -39,11 +39,11 @@
         android:textSize="@dimen/text_size_middle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_changepass_password"
         android:layout_marginHorizontal="24dp"/>
 
     <TextView
-        android:id="@+id/tv_signup_username"
+        android:id="@+id/tv_changepassword_newpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tên đăng nhập"
@@ -57,13 +57,13 @@
         />
 
     <EditText
-        android:id="@+id/et_signup_username"
+        android:id="@+id/et_signup_fullname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_middle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_username"
+        app:layout_constraintTop_toBottomOf="@id/tv_changepassword_newpassword"
         android:layout_marginHorizontal="24dp"/>
 
     <TextView
@@ -75,13 +75,13 @@
         android:textColor="@color/orange"
         android:fontFamily="sans-serif-light"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_username"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_fullname"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         />
 
     <EditText
-        android:id="@+id/et_signup_pass"
+        android:id="@+id/et_signup_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_middle"
@@ -100,7 +100,7 @@
         android:textColor="@color/orange"
         android:fontFamily="sans-serif-light"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_pass"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_password"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
         />
@@ -165,7 +165,7 @@
         android:layout_marginHorizontal="24dp"/>
 
     <Button
-        android:id="@+id/btn_Sign_Up"
+        android:id="@+id/btn_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_design"
@@ -189,7 +189,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Sign_Up"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sign_up"
         app:layout_constraintVertical_bias="0.2" />
 
 

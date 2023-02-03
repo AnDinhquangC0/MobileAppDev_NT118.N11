@@ -36,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         etPhone=(EditText) findViewById(R.id.et_signup_phone);
         etEmail=(EditText) findViewById(R.id.et_signup_email);
         etAddress=(EditText) findViewById(R.id.et_signup_address);
-        btnSignUp=(Button) findViewById(R.id.btn_Sign_Up);
+        btnSignUp=(Button) findViewById(R.id.btn_sign_up);
         tvSignIn=(TextView)findViewById(R.id.tv_signup_login);
 
         //Firebase
