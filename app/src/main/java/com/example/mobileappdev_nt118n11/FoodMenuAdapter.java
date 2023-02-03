@@ -84,6 +84,7 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHo
         }
     }
 
+    //Ngắt số vd: xxxxxx -> xxx,xxx
     public static String StrDecimalFormat(String value)
     {
         StringTokenizer lst = new StringTokenizer(value, ".");

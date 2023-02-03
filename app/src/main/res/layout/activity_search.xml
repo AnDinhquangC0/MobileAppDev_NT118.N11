@@ -9,22 +9,17 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-    <EditText
-        android:id="@+id/et_search_bar_search"
-        android:layout_width="0dp"
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/mtsearchbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/amita"
         android:singleLine="true"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:drawableTint="@color/white"
+        app:mt_hint="@string/search_hint"
         android:background="@drawable/search_background"
         android:drawablePadding="9dp"
         android:padding="12dp"
         android:layout_marginTop="8dp"
-        android:hint="Chạm để biết ăn gì nè!"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +30,7 @@
         android:id="@+id/filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_search_bar_search"
+        app:layout_constraintTop_toBottomOf="@id/mtsearchbar"
         android:text="Filter"
         android:padding="8dp"
         android:textSize="14sp" />

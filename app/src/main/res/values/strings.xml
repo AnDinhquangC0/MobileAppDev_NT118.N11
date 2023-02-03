@@ -19,6 +19,7 @@
     <string name="menu_unpaid">Đơn chờ</string>
     <string name="menu_paid">Đơn đã kiểm</string>
     <string name="menu_orders">Orders</string>
+    <string name="search_hint">Bạn đói chưa? Cùng tìm món ngon nào</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
