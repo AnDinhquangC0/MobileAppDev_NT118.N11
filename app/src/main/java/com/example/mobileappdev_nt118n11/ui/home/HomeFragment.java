@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
             //rcvFoodList.addItemDecoration(new DividerItemDecoration(rcvFoodList.getContext(), DividerItemDecoration.VERTICAL));
             rcvFoodList.setAdapter(recyclerAdapter);
 
-            etSearch = (EditText) root.findViewById(R.id.home_search_bar);
+            /*etSearch = (EditText) root.findViewById(R.id.home_search_bar);
             etSearch.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
                     }
                     return false;
                 }
-            });
+            });*/
 
             database = FirebaseDatabase.getInstance();
             database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {

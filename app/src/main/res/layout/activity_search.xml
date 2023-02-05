@@ -18,7 +18,6 @@
         app:mt_hint="@string/search_hint"
         android:background="@drawable/search_background"
         android:drawablePadding="9dp"
-        android:padding="12dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
