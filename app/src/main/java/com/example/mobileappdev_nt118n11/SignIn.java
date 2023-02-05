@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SignIn extends AppCompatActivity {
     EditText etUsername,etPassword;
     Button btnSignIn;
-    TextView tvRegister;
+    TextView tvRegister, tvForgot;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +36,7 @@ public class SignIn extends AppCompatActivity {
         etUsername =(EditText) findViewById(R.id.et_signin_username);
         btnSignIn=(Button) findViewById(R.id.btn_Sign_In);
         tvRegister=(TextView)findViewById(R.id.tv_signin_register);
+        tvForgot = findViewById(R.id.tv_sigin_forgot);
 
     //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -91,6 +92,14 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
                 Intent signUp = new Intent(SignIn.this,SignUp.class);
                 startActivity(signUp);
+            }
+        });
+
+        tvForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignIn.this,ForgotPassword.class);
+                startActivity(intent);
             }
         });
    }
