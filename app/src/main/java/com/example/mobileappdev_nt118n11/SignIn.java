@@ -67,6 +67,7 @@ public class SignIn extends AppCompatActivity {
                                     Intent Home = new Intent(SignIn.this,NavigationActivity.class);
                                     Phone.Key_Phone=etUsername.getText().toString().trim();
                                     startActivity(Home);
+                                    finish();
                                 } else
                                     Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
                             }
