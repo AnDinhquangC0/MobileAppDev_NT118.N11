@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import com.example.mobileappdev_nt118n11.Model.User;
 import com.example.mobileappdev_nt118n11.ui.profile.Phone;
@@ -36,7 +37,7 @@ public class SignIn extends AppCompatActivity {
         etUsername =(EditText) findViewById(R.id.et_signin_username);
         btnSignIn=(Button) findViewById(R.id.btn_Sign_In);
         tvRegister=(TextView)findViewById(R.id.tv_signin_register);
-        tvForgot = findViewById(R.id.tv_sigin_forgot);
+        tvForgot = findViewById(R.id.tv_signin_forgot);
 
     //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
