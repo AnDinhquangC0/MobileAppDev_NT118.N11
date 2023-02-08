@@ -83,4 +83,7 @@ dependencies {
 
     //Material search lib
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
+
+    //Pinview
+    implementation 'com.chaos.view:pinview:1.4.3'
 }
