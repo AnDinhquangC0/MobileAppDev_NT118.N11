@@ -42,7 +42,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        //Test
         <activity
             android:name=".ForgotPassword"
             android:exported="false">
