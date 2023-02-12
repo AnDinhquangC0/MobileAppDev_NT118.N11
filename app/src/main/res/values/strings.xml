@@ -20,6 +20,12 @@
     <string name="menu_paid">Đơn đã kiểm</string>
     <string name="menu_orders">Orders</string>
     <string name="search_hint">Bạn đói chưa? Cùng tìm món ngon nào</string>
+    <string name="button_next">Tiếp theo</string>
+    <string name="button_verify">Xác nhận</string>
+    <string name="button_save">Lưu</string>
+
+    <string name="new_password">Mật khẩu mới : </string>
+    <string name="confim_password">Xác nhận mật khẩu : </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -28,4 +28,8 @@
         android:name="com.example.mobileappdev_nt118n11.ui.cart.CartFragment"
         android:label="@string/menu_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.mobileappdev_nt118n11.LogoutFragment"
+        android:label="fragment_logout" />
 </navigation>
