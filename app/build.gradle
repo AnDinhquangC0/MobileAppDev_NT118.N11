@@ -84,6 +84,12 @@ dependencies {
     //Material search lib
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 
+
+    //cart support lib
+    //sqlite asset helper
+    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+
     //Pinview
     implementation 'com.chaos.view:pinview:1.4.3'
+
 }

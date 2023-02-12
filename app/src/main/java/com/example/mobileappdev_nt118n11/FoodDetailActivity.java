@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
+import com.example.mobileappdev_nt118n11.Model.Order;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,10 +43,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         tvTypeDetail = (TextView) findViewById(R.id.food_type_detail);
         tvPriceDetail = (TextView) findViewById(R.id.food_price_detail);
         tvDescrDetail = (TextView) findViewById(R.id.food_description_detail);
-        btnCart = (Button) findViewById(R.id.btn_add_to_cart);
-        ivMinusQuantity= (ImageView) findViewById(R.id.iv_minus);
-        ivPlusQuantity = (ImageView) findViewById(R.id.iv_plus);
-        tvQuantity = (TextView) findViewById(R.id.tv_number);
+
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("idKey");
@@ -90,6 +90,24 @@ public class FoodDetailActivity extends AppCompatActivity {
 //        tvTypeDetail.setText(foodDetail.getFoodtype());
 //        tvPriceDetail.setText(foodDetail.getPrice());
 //        tvDescrDetail.setText(foodDetail.getDescr());
+
+        btnCart = (Button) findViewById(R.id.btn_add_to_cart);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Database(getBaseContext()).addToCart(new Order(
+                        id,
+                        foodDetail.getName(),
+                        tvQuantity.getText().toString(),
+                        foodDetail.getPrice()
+                ));
+
+                Toast.makeText(FoodDetailActivity.this,"Added to cart",Toast.LENGTH_SHORT).show();
+            }
+        });
+        tvQuantity = (TextView) findViewById(R.id.tv_number);
+        ivMinusQuantity= (ImageView) findViewById(R.id.iv_minus);
+        ivPlusQuantity = (ImageView) findViewById(R.id.iv_plus);
         ivMinusQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
