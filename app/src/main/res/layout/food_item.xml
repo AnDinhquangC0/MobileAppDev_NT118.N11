@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,19 +12,19 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/food_image"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_margin="10dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:scaleType="centerCrop"
             android:src="@drawable/background"
             app:riv_corner_radius="24dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="130dp"
             android:orientation="vertical"
-            android:layout_weight="1.5"
+            android:layout_weight="5"
             android:layout_marginTop="10dp">
 
             <TextView

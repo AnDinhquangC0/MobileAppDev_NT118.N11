@@ -46,7 +46,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-//        fragmentContext = context;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -95,8 +94,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
 }
