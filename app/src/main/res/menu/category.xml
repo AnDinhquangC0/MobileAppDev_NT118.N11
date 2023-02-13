@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:title="Đồ ăn"
+            android:id="@+id/food"
+            android:icon="@drawable/ic_baseline_fastfood_24"></item>
+      <item android:title="Nước"
+          android:id="@+id/water"
+          android:icon="@drawable/ic_water"></item>
+      <item android:title="Bánh"
+          android:id="@+id/cake"
+          android:icon="@drawable/ic_cake"></item>
+      <item android:title="Ăn vặt"
+          android:id="@+id/snack"
+          android:icon="@drawable/ic_snack"></item>
+
+</menu>
