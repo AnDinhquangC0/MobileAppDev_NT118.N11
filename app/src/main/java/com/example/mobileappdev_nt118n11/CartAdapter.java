@@ -2,6 +2,7 @@ package com.example.mobileappdev_nt118n11;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
+import com.example.mobileappdev_nt118n11.ui.cart.CartFragment;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -40,8 +45,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Order foodModel = cartList.get(position);
         //Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.cart_image);
+        Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.cart_image);
         holder.cart_name.setText(foodModel.getProductName());
         holder.cart_price.setText(StrDecimalFormat(foodModel.getPrice()));
+        holder.btn_quantity.setNumber(foodModel.getQuantity());
+        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                foodModel.setQuantity(String.valueOf(newValue));
+                new Database(context).updateCart(foodModel);
+
+                int total = 0;
+                ArrayList<Order> orderList = new Database(context).getCart();
+                for (Order order: orderList)
+                    total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
+
+                CartFragment.tvTotalPrice.setText(StrDecimalFormat(Integer.toString(total)));
+            }
+        });
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -65,9 +86,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartList.size();
     }
 
-    class CartViewHolder extends RecyclerView.ViewHolder{
+    class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         ImageView cart_image;
         TextView cart_name, cart_note, cart_quantity, cart_price;
+        ElegantNumberButton btn_quantity;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             cart_image = (ImageView) itemView.findViewById(R.id.cart_image);
@@ -75,6 +97,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             cart_note = (TextView) itemView.findViewById(R.id.food_note);
             cart_quantity = (TextView) itemView.findViewById(R.id.cart_quantity);
             cart_price = (TextView) itemView.findViewById(R.id.cart_price);
+            btn_quantity = (ElegantNumberButton) itemView.findViewById(R.id.btn_quantity);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            contextMenu.setHeaderTitle("Select action");
+            contextMenu.add(0,0,getAdapterPosition(),Common.DELETE);
         }
     }
 

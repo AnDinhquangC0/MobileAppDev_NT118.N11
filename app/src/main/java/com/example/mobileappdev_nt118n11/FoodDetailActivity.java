@@ -99,7 +99,8 @@ public class FoodDetailActivity extends AppCompatActivity {
                         id,
                         foodDetail.getName(),
                         tvQuantity.getText().toString(),
-                        foodDetail.getPrice()
+                        foodDetail.getPrice(),
+                        foodDetail.getImage()
                 ));
 
                 Toast.makeText(FoodDetailActivity.this,"Added to cart",Toast.LENGTH_SHORT).show();

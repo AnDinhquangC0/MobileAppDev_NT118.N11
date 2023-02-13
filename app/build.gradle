@@ -92,4 +92,8 @@ dependencies {
     //Pinview
     implementation 'com.chaos.view:pinview:1.4.3'
 
+    //Number button
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+
 }

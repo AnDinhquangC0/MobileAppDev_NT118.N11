@@ -83,6 +83,19 @@
                 android:text="1"
                 android:textSize="20sp" />
 
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:id="@+id/btn_quantity"
+                app:layout_constraintStart_toEndOf="@id/cart_quantity"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:initialNumber="1"
+                app:backgroundDrawable="@drawable/btn_design_r8"
+                app:backGroundColor="@color/light_orange"
+                app:textColor="@color/white"/>
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

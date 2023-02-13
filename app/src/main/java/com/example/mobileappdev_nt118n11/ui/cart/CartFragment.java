@@ -1,19 +1,23 @@
 package com.example.mobileappdev_nt118n11.ui.cart;
 
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappdev_nt118n11.CartAdapter;
+import com.example.mobileappdev_nt118n11.Common;
 import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
@@ -34,7 +38,7 @@ public class CartFragment extends Fragment {
     ArrayList<Food> recyclerFoodList;
     FirebaseDatabase database;
     DatabaseReference request;
-    TextView tvTotalPrice;
+    public static TextView tvTotalPrice;
     Button btnPurchase;
     ArrayList<Order> cartList = new ArrayList<>();
     CartAdapter adapter;
@@ -63,6 +67,7 @@ public class CartFragment extends Fragment {
             }
         });
         loadCartFood();
+        loadTotal(cartList);
         return root;
     }
 
@@ -70,14 +75,49 @@ public class CartFragment extends Fragment {
 
         cartList = new Database(getActivity().getBaseContext()).getCart();
         adapter = new CartAdapter(cartList,getActivity().getBaseContext());
+        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
 
-        //Tính tổng tiền
+
+//        int total = 0;
+//        for (Order order: cartList)
+//            total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
+//
+//        tvTotalPrice.setText(StrDecimalFormat(Integer.toString(total)));
+    }
+
+    //Tính tổng tiền
+    public void loadTotal(ArrayList<Order> list){
         int total = 0;
-        for (Order order: cartList)
+        for (Order order: list)
             total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
 
         tvTotalPrice.setText(StrDecimalFormat(Integer.toString(total)));
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if (item.getTitle().equals(Common.DELETE))
+            deleteCart(item.getOrder());
+        return super.onContextItemSelected(item);
+    }
+
+    private void deleteCart(int pos){
+        cartList.remove(pos);
+        new Database(getActivity().getBaseContext()).cleanCart();
+
+        for (Order item: cartList){
+            new Database(getActivity().getBaseContext()).addToCart(item);
+        }
+        //Tải lại cart sau khi xóa
+        loadCartFood();
+        loadTotal(cartList);
     }
 
     public static String StrDecimalFormat(String value)
