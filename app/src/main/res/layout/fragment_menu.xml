@@ -12,17 +12,17 @@
         android:id="@+id/search_bar_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/amita"
-        android:singleLine="true"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:drawableTint="@color/white"
-        android:background="@drawable/search_background"
-        android:drawablePadding="9dp"
-        android:padding="12dp"
         android:layout_margin="8dp"
+        android:background="@drawable/search_background"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:drawablePadding="9dp"
+        android:drawableTint="@color/white"
+        android:fontFamily="@font/amita"
         android:hint="Tìm món"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
         android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,21 +67,6 @@
         android:layout_margin="10dp"
         app:layout_anchor="@id/layout_admin_menu"
         />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_edit_foodtype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:backgroundTint="@color/light_orange"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_baseline_edit_24"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/btn_add_food"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_anchor="@id/rcv_admin_menu"
-       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
