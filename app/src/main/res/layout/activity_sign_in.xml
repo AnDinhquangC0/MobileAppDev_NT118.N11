@@ -93,7 +93,7 @@
         android:id="@+id/btn_Sign_In"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_design"
+        android:background="@drawable/btn_design_r50"
         android:text="ĐĂNG NHẬP"
         android:textSize="@dimen/btn_text"
         android:textColor="@color/white"

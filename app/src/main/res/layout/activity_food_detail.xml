@@ -397,7 +397,7 @@
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/orange"
-                android:background="@drawable/btn_design"
+                android:background="@drawable/btn_design_r50"
                 android:text="Thêm vào giỏ"
                 android:layout_gravity="end"
                 android:gravity="center_horizontal|center_vertical"
