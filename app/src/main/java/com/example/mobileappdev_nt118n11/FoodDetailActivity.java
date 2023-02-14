@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
+import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -96,6 +97,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new Database(getBaseContext()).addToCart(new Order(
+                        Phone.Key_Phone,
                         id,
                         foodDetail.getName(),
                         tvQuantity.getText().toString(),

@@ -18,6 +18,7 @@ import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
 import com.example.mobileappdev_nt118n11.ui.cart.CartFragment;
+import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
@@ -56,7 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 new Database(context).updateCart(foodModel);
 
                 int total = 0;
-                ArrayList<Order> orderList = new Database(context).getCart();
+                ArrayList<Order> orderList = new Database(context).getCart(Phone.Key_Phone);
                 for (Order order: orderList)
                     total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
 
