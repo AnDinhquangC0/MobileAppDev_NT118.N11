@@ -19,27 +19,42 @@ public class Database extends SQLiteAssetHelper {
         super(context,DB_NAME,null, DB_VERSION);
     }
 
-    public ArrayList<Order> getCart(){
+    public Boolean checkIfFoodExist(String foodId, String userPhone){
+        Boolean flag;
+
+        SQLiteDatabase sqlDB = getReadableDatabase();
+        String query = String.format("SELECT * FROM OrderDetail WHERE UserPhone = '%s' AND ProductId = '%s'",userPhone,foodId);
+        Cursor cursor = sqlDB.rawQuery(query,null);
+        if (cursor.getCount() > 0)
+            flag = true;
+        else
+            flag = false;
+        cursor.close();
+        return flag;
+
+    }
+
+    public ArrayList<Order> getCart(String userPhone){
         SQLiteDatabase sqlDB = getReadableDatabase();
         SQLiteQueryBuilder queryBuild = new SQLiteQueryBuilder();
-        String[] sqlSelect = {"ID","ProductID","ProductName","Quantity","Price","Image"};
+        String[] sqlSelect = {"UserPhone","ProductID","ProductName","Quantity","Price","Image"};
         String sqlTable = "OrderDetail";
 
         queryBuild.setTables(sqlTable);
-        Cursor c = queryBuild.query(sqlDB,sqlSelect,null,null,null,null,null);
+        Cursor c = queryBuild.query(sqlDB,sqlSelect,"UserPhone=?",new String[]{userPhone},null,null,null);
 
         final ArrayList<Order> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
-                int idTableCol = c.getColumnIndex("ID");
+                int phoneCol = c.getColumnIndex("UserPhone");
                 int idProductCol = c.getColumnIndex("ProductId");
                 int nameCol = c.getColumnIndex("ProductName");
                 int quantityCol = c.getColumnIndex("Quantity");
                 int priceCol = c.getColumnIndex("Price");
                 int imgCol = c.getColumnIndex("Image");
 
-                if (idTableCol!=-1 && idProductCol != -1 && nameCol!=-1 && quantityCol!=-1 && priceCol!=-1 && imgCol!=-1)
-                    result.add(new Order(c.getInt(idTableCol),
+                if (phoneCol!=-1 && idProductCol != -1 && nameCol!=-1 && quantityCol!=-1 && priceCol!=-1 && imgCol!=-1)
+                    result.add(new Order(c.getString(phoneCol),
                             c.getString(idProductCol),
                             c.getString(nameCol),
                             c.getString(quantityCol),
@@ -54,26 +69,38 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart(Order order){
         SQLiteDatabase sqlDB = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail (ProductId,ProductName,Quantity,Price,Image) VALUES ('%s','%s','%s','%s','%s')",
-                order.getProductId(),
-                order.getProductName(),
-                order.getQuantity(),
-                order.getPrice(),
-                order.getImage());
+        String query;
+        if (checkIfFoodExist(order.getProductId(), order.getUserPhone())){
+            int number = Integer.parseInt(order.getQuantity());
+            query = String.format("UPDATE OrderDetail SET Quantity= Quantity + %d WHERE UserPhone = '%s' AND ProductId= '%s'",
+                    number,
+                    order.getUserPhone(),
+                    order.getProductId());
+        }
+        else {
+            query = String.format("INSERT INTO OrderDetail (UserPhone,ProductId,ProductName,Quantity,Price,Image) VALUES ('%s','%s','%s','%s','%s','%s')",
+                    order.getUserPhone(),
+                    order.getProductId(),
+                    order.getProductName(),
+                    order.getQuantity(),
+                    order.getPrice(),
+                    order.getImage());
+        }
         sqlDB.execSQL(query);
     }
 
-    public void cleanCart(){
+    public void cleanCart(String userPhone){
         SQLiteDatabase sqlDB = getReadableDatabase();
-        String query = "DELETE FROM OrderDetail";
+        String query = String.format("DELETE FROM OrderDetail WHERE UserPhone= '%s'",userPhone);
         sqlDB.execSQL(query);
     }
 
     public void updateCart(Order order) {
         SQLiteDatabase sqlDB = getReadableDatabase();
-        String query = String.format("UPDATE OrderDetail SET Quantity= %s WHERE ID = %d",
+        String query = String.format("UPDATE OrderDetail SET Quantity= '%s' WHERE UserPhone = '%s' AND ProductId= '%s'",
                 order.getQuantity(),
-                order.getID());
+                order.getUserPhone(),
+                order.getProductId());
         sqlDB.execSQL(query);
     }
 }

@@ -64,6 +64,9 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
                 //Tạo chi tiết hóa đơn
                 //Request orderRequest = new Request(Phone.Key_Phone);
+//                String order_number = String.valueOf(System.currentTimeMillis());
+//                request.child(order_number).setValue(request);
+                //new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
             }
         });
         loadCartFood();
@@ -73,7 +76,7 @@ public class CartFragment extends Fragment {
 
     private void loadCartFood() {
 
-        cartList = new Database(getActivity().getBaseContext()).getCart();
+        cartList = new Database(getActivity().getBaseContext()).getCart(Phone.Key_Phone);
         adapter = new CartAdapter(cartList,getActivity().getBaseContext());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
@@ -110,7 +113,7 @@ public class CartFragment extends Fragment {
 
     private void deleteCart(int pos){
         cartList.remove(pos);
-        new Database(getActivity().getBaseContext()).cleanCart();
+        new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
 
         for (Order item: cartList){
             new Database(getActivity().getBaseContext()).addToCart(item);
