@@ -23,6 +23,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".AdminEditTypeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AdminAddTypeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.profile.ChangePasswordActivity"
             android:exported="false">
             <meta-data

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminEditTypeActivity"
+    android:orientation="vertical"
+    android:paddingTop="50dp"
+    android:paddingHorizontal="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Chỉnh sửa phân loại"
+        android:textColor="@color/other_red"
+        android:textSize="@dimen/text_size_middle"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mã phân loại"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/other_red"/>
+
+    <EditText
+        android:id="@+id/et_edittype_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_middle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên phân loại"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/other_red"/>
+
+    <EditText
+        android:id="@+id/et_edittype_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_middle"/>
+
+    <Button
+        android:id="@+id/btn_savetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_design"
+        android:backgroundTint="@color/other_red"
+        android:text="Lưu"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        />
+
+</LinearLayout>
