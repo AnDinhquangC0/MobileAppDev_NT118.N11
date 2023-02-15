@@ -5,16 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="6dp"
-    android:layout_margin="8dp">
+    android:layout_margin="4dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="4"
             android:orientation="horizontal"
             android:layout_margin="4dp">
@@ -22,7 +17,7 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/cart_image"
                 android:layout_width="0dp"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
                 android:layout_margin="4dp"
                 android:layout_weight="3"
                 android:scaleType="centerCrop"
@@ -31,7 +26,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
+                android:layout_margin="4dp"
                 android:layout_weight="5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cart_image"
@@ -42,12 +38,11 @@
                     android:id="@+id/cart_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="4dp"
                     android:singleLine="true"
                     android:text="Name"
                     android:textColor="@color/black"
                     android:textSize="24sp"
-                    android:textStyle="bold"
                     android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -58,76 +53,67 @@
                     android:id="@+id/food_note"
                     app:layout_constraintTop_toBottomOf="@id/cart_name"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/constraint_layout"
                     android:singleLine="false"
                     android:text="Ghi chú món tại đây" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:layout_width="80dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/btn_quantity"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:initialNumber="1"
+                        app:textSize="6sp"
+                        app:backgroundDrawable="@drawable/btn_design_r8"
+                        app:backGroundColor="@color/light_orange"
+                        app:textColor="@color/white"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/price_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="1"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp">
+
+                        <TextView
+                            android:id="@+id/cart_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="top"
+                            android:text="120.000"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/vnd_symbol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="đ"
+                            android:textSize="18sp"
+                            android:gravity="top"
+                            android:textColor="@color/black"/>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cart_quantity"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="1"
-                android:textSize="20sp" />
-
-            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                android:layout_width="60dp"
-                android:layout_height="25dp"
-                android:id="@+id/btn_quantity"
-                app:layout_constraintStart_toEndOf="@id/cart_quantity"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:initialNumber="1"
-                app:backgroundDrawable="@drawable/btn_design_r8"
-                app:backGroundColor="@color/light_orange"
-                app:textColor="@color/white"/>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="1"
-                android:layout_weight="1"
-                android:layout_marginEnd="4dp">
-
-                <TextView
-                    android:id="@+id/cart_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="top"
-                    android:text="120.000"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:id="@+id/vnd_symbol"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="đ"
-                    android:textSize="20sp"
-                    android:gravity="top"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

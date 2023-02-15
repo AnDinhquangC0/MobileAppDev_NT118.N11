@@ -24,6 +24,7 @@ import com.example.mobileappdev_nt118n11.Model.Order;
 import com.example.mobileappdev_nt118n11.Model.Request;
 import com.example.mobileappdev_nt118n11.R;
 import com.example.mobileappdev_nt118n11.ui.profile.Phone;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,8 +41,10 @@ public class CartFragment extends Fragment {
     DatabaseReference request;
     public static TextView tvTotalPrice;
     Button btnPurchase;
+    TextView tvDelete;
     ArrayList<Order> cartList = new ArrayList<>();
     CartAdapter adapter;
+    TextInputEditText etAddr;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +60,19 @@ public class CartFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        etAddr = (TextInputEditText) root.findViewById(R.id.et_address_cart);
+        etAddr.setText(Common.currentUser.getAddress());
+        tvDelete = (TextView) root.findViewById(R.id.tv_delete_cart);
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartList.clear();
+                new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
+                //Tải lại cart sau khi xóa
+                loadCartFood();
+                loadTotal(cartList);
+            }
+        });
         tvTotalPrice = (TextView) root.findViewById(R.id.tv_total);
         btnPurchase = (Button) root.findViewById(R.id.btnthanhtoan);
         btnPurchase.setOnClickListener(new View.OnClickListener() {

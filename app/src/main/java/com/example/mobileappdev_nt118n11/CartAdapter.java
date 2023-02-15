@@ -96,7 +96,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             cart_image = (ImageView) itemView.findViewById(R.id.cart_image);
             cart_name = (TextView) itemView.findViewById(R.id.cart_name);
             cart_note = (TextView) itemView.findViewById(R.id.food_note);
-            cart_quantity = (TextView) itemView.findViewById(R.id.cart_quantity);
             cart_price = (TextView) itemView.findViewById(R.id.cart_price);
             btn_quantity = (ElegantNumberButton) itemView.findViewById(R.id.btn_quantity);
             itemView.setOnCreateContextMenuListener(this);

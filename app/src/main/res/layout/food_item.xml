@@ -3,72 +3,153 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="5dp">
+    app:cardElevation="6dp"
+    android:layout_margin="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/food_image"
             android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
             android:layout_weight="3"
             android:scaleType="centerCrop"
             android:src="@drawable/background"
             app:riv_corner_radius="24dp" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="100dp"
             android:orientation="vertical"
             android:layout_weight="5"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/Layout_rate"
+                android:layout_marginStart="4dp">
+
+                <TextView
+                    android:id="@+id/card_tv_food_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="4.0"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/card_iv_star1"
+                    android:src="@drawable/ic_baseline_star_rate_24"
+                    app:tint="@color/light_orange"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/card_iv_star2"
+                    android:src="@drawable/ic_baseline_star_rate_24"
+                    app:tint="@color/light_orange"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/card_iv_star3"
+                    android:src="@drawable/ic_baseline_star_rate_24"
+                    app:tint="@color/light_orange"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/card_iv_star4"
+                    android:src="@drawable/ic_baseline_star_rate_24"
+                    app:tint="@color/light_orange"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/card_iv_star5"
+                    android:src="@drawable/ic_baseline_star_rate_24"
+                    app:tint="@color/light_orange_star"
+                    android:layout_gravity="center_vertical|center_horizontal" />
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_baseline_favorite_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/Layout_rate"
+                app:layout_constraintHorizontal_bias="1"
+                android:layout_margin="8dp"/>
+
 
             <TextView
                 android:id="@+id/food_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:maxLines="2"
-                android:singleLine="false"
+                android:singleLine="true"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:textSize="24sp"
                 android:visibility="visible"
-                android:gravity="bottom"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Layout_rate"
+                app:layout_constraintBottom_toTopOf="@id/layout_type"
+                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="4dp"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
                 android:orientation="horizontal"
-                android:layout_weight="0.5">
+                android:id="@+id/layout_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp">
 
                 <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:src="@drawable/ic_baseline_fastfood_24"
                     android:layout_gravity="center_vertical"
                     app:tint="@color/orange"/>
+
                 <TextView
+                    android:id="@+id/food_type"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/food_type"
-                    android:text="Phở"
-                    android:layout_marginLeft="2dp"
-                    android:textSize="14sp"
+                    android:layout_marginStart="2dp"
                     android:gravity="center_vertical"
-                    android:textColor="@color/black" />
+                    android:text="Phở"
+                    android:textColor="@color/medium_gray"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="1">
+                android:id="@+id/layout_price"
+                app:layout_constraintStart_toEndOf="@id/layout_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                android:layout_margin="4dp">
 
                 <TextView
                     android:id="@+id/food_price"
@@ -76,23 +157,22 @@
                     android:layout_height="match_parent"
                     android:gravity="top"
                     android:text="120.000"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/vnd_symbol"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="đ"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:gravity="top"
                     android:textColor="@color/black"/>
 
 
             </LinearLayout>
 
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 
