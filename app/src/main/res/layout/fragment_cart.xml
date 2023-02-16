@@ -9,13 +9,14 @@
     android:paddingEnd="10dp"
     android:paddingBottom="4dp"
     android:focusable="true"
-    android:focusableInTouchMode="true" >
+    android:focusableInTouchMode="true"
+    android:windowSoftInputMode="adjustNothing">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_et_addr"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toStartOf="@id/tv_delete_cart"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +117,7 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         app:backgroundTint="#ff3300"
+        app:layout_constraintTop_toBottomOf="@id/btnthanhtoan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -130,8 +132,8 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         app:backgroundTint="#ff3300"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btntieptucmuasam"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
