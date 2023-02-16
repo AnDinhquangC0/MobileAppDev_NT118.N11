@@ -11,11 +11,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,7 +35,6 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.UUID;
 
 public class AdminUpdatefoodActivity extends AppCompatActivity {
@@ -40,6 +42,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
     private EditText edName, edType,edPrice,edDecription;
     private ImageView imgPicture;
     private Uri filePath;
+    private Toolbar tb_TypeFood;
     private final int PICK_IMAGE_REQUEST = 71;
     private Button btn_update,btn_delete,btn_upload;
     Food UpdateFood;
@@ -48,6 +51,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
     String id,url;
+    String Type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
         edName=(EditText) findViewById(R.id.et_updatefood_name);
         edDecription=(EditText) findViewById(R.id.et_updatefood_descr);
         edPrice=(EditText) findViewById(R.id.et_updatefood_price);
-        edType=(EditText) findViewById(R.id.et_updatefood_type);
+        tb_TypeFood=(Toolbar) findViewById(R.id.tb_update_typefood);
         imgPicture=(ImageView) findViewById(R.id.img_updatefood);
         btn_update=(Button) findViewById(R.id.btn_updatefood);
         btn_delete=(Button) findViewById(R.id.btn_deletefood);
@@ -67,7 +71,8 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
         storageReference = storage.getReference();
         Intent intent = getIntent();
         id = intent.getStringExtra("adminIdKey");
-
+        //
+        setSupportActionBar(tb_TypeFood);
         database = FirebaseDatabase.getInstance();
         database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -77,7 +82,6 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         UpdateFood = dataSnapshot.getValue(Food.class);
                         Picasso.get().load(UpdateFood.getImage()).placeholder(R.drawable.background).into(imgPicture);
                         edName.setText(UpdateFood.getName());
-                        edType.setText(UpdateFood.getFoodtype());
                         edPrice.setText(getDecimalFormattedString(UpdateFood.getPrice()));
                         edDecription.setText(UpdateFood.getDescr());
                     }
@@ -110,7 +114,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 UpdateFood.setName(edName.getText().toString());
-                UpdateFood.setFoodtype(edType.getText().toString());
+                UpdateFood.setFoodtype(Type);
                 UpdateFood.setDescr(edDecription.getText().toString());
                 UpdateFood.setPrice(edPrice.getText().toString());
                 food.child(id).setValue(UpdateFood);
@@ -128,6 +132,31 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.typefood_item,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.food:
+                Type="Đồ ăn";
+                return true;
+            case R.id.water:
+                Type="Nước";
+                return true;
+            case R.id.snack:
+                Type="Đồ ăn vặt";
+                return true;
+            case R.id.cake:
+                Type="Bánh";
+                return true;
+            default:
+                return true;
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

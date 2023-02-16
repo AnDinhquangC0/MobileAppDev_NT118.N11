@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import  androidx.appcompat.widget.Toolbar;
 
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,24 +42,25 @@ public class AdminAddfoodActivity extends AppCompatActivity {
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
     private Button btn_add;
+    private Toolbar tb_TypeFood;
     Food newFood;
     FirebaseDatabase database;
     DatabaseReference food;
     FirebaseStorage storage;
     StorageReference storageReference;
-
+    String Type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_addfood);
 
         edName=(EditText) findViewById(R.id.et_addfood_name);
-        tvType=(TextView) findViewById(R.id.tv_addfood_Type);
+
         edPrice=(EditText) findViewById(R.id.et_addfood_price);
         edDecription=(EditText) findViewById(R.id.et_addfood_descr);
         imgPicture=(ImageView) findViewById(R.id.img_addfood);
         btn_add=(Button) findViewById(R.id.btn_addfood);
-
+        tb_TypeFood=(Toolbar)findViewById(R.id.tb_addfood_type);
         database=FirebaseDatabase.getInstance();
         food=database.getReference("Food");
         storage = FirebaseStorage.getInstance();
@@ -78,7 +80,35 @@ public class AdminAddfoodActivity extends AppCompatActivity {
                 uploadImage();
             }
         });
+        setSupportActionBar(tb_TypeFood);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.typefood_item,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.food:
+                Type="Đồ ăn";
+                return true;
+            case R.id.water:
+                Type="Nước";
+                return true;
+            case R.id.snack:
+                Type="Đồ ăn vặt";
+                return true;
+            case R.id.cake:
+                Type="Bánh";
+                return true;
+            default:
+                Type="Đồ ăn";
+                return true;
+        }
     }
 
     @Override
@@ -119,7 +149,7 @@ public class AdminAddfoodActivity extends AppCompatActivity {
                                     Random random=new Random();
                                     int number = random.nextInt();
                                     String IDFood = String.valueOf(number);
-                                    newFood = new Food(edName.getText().toString(),uri.toString(),edDecription.getText().toString(),edPrice.getText().toString(),"Đồ ăn");
+                                    newFood = new Food(edName.getText().toString(),uri.toString(),edDecription.getText().toString(),edPrice.getText().toString(),Type);
 
                                     food.child(IDFood).setValue(newFood);
                                     Intent Management = new Intent(AdminAddfoodActivity.this,ManagementActivity.class);
