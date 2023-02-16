@@ -78,6 +78,14 @@ public class AdminAddfoodActivity extends AppCompatActivity {
                 uploadImage();
             }
         });
+        tvType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Typefood = new Intent(AdminAddfoodActivity.this,AdminTypefoodActivity.class);
+                startActivity(Typefood);
+
+            }
+        });
 
     }
 
