@@ -52,13 +52,13 @@
             android:fontFamily="sans-serif-light"
             android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:id="@+id/tv_addfood_Type"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_addfood_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bấm để chọn loại cho món ăn."
-            android:textColor="#101010"
-            android:textSize="@dimen/text_size_middle" />
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
 
         <TextView
             android:id="@+id/tv_addfood_price"

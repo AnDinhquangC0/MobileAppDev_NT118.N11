@@ -49,7 +49,7 @@
         android:id="@+id/btn_savetype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_design"
+        android:background="@drawable/btn_design_r50"
         android:backgroundTint="@color/other_red"
         android:text="Lưu"
         android:textColor="@color/white"
