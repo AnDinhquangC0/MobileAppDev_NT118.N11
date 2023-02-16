@@ -41,7 +41,6 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull FoodMenuAdapter.ViewHolder holder, int position) {
 
-        DecimalFormat decFormat = new DecimalFormat("###,###,###");
         Food foodModel = list.get(position);
         Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
         holder.item_name.setText(foodModel.getName());

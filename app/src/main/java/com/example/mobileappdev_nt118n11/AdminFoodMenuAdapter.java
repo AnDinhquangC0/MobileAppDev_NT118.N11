@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,6 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
     @Override
     public void onBindViewHolder(@NonNull AdminFoodMenuAdapter.ViewHolder holder, int position) {
 
-        DecimalFormat decFormat = new DecimalFormat("###,###,###");
         Food foodModel = list.get(position);
         Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
         holder.item_name.setText(foodModel.getName());
@@ -58,7 +58,7 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
                 }
                 else{
                     Intent intent = new Intent(context, AdminUpdatefoodActivity.class);
-                    intent.putExtra("idKey", foodModel.getId());
+                    intent.putExtra("adminIdKey", foodModel.getId());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
@@ -76,13 +76,14 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
 
         ImageView item_image;
         TextView item_name, item_type, item_price;
+        ImageButton btn_delete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             item_image = (ImageView) itemView.findViewById(R.id.food_image);
             item_name = (TextView) itemView.findViewById(R.id.food_name);
             item_type = (TextView) itemView.findViewById(R.id.food_type);
             item_price = (TextView) itemView.findViewById(R.id.food_price);
-
+            btn_delete = (ImageButton) itemView.findViewById(R.id.btn_delete);
         }
     }
 

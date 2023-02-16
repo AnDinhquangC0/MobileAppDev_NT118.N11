@@ -16,7 +16,6 @@
         android:fontFamily="@font/amita"
         android:singleLine="true"
         app:mt_hint="@string/search_hint"
-        android:background="@drawable/search_background"
         android:padding="4dp"
         android:drawablePadding="9dp"
         android:layout_marginTop="4dp"
@@ -24,16 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/filter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mtsearchbar"
-        android:text="Filter"
-        android:padding="8dp"
-        android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -42,7 +31,7 @@
         android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filter"
+        app:layout_constraintTop_toBottomOf="@id/mtsearchbar"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="8dp"/>
 

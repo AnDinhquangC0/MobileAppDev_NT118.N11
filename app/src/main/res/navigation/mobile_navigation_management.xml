@@ -21,5 +21,9 @@
         android:name="com.example.mobileappdev_nt118n11.ui.OrdersFragment"
         android:label="@string/menu_type"
         tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/nav_management_logout"
+        android:name="com.example.mobileappdev_nt118n11.ManagementLogoutFragment"
+        android:label="fragment_management_logout" />
 
 </navigation>
