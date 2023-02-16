@@ -52,13 +52,13 @@
             android:fontFamily="sans-serif-light"
             android:layout_marginTop="10dp"/>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_addfood_type"
+        <Spinner
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:layout_height="45dp"
+            android:id="@+id/spinner_type"
+            android:textSize="20sp" />
+
 
         <TextView
             android:id="@+id/tv_addfood_price"
