@@ -42,6 +42,13 @@ public class ForgotPassword extends AppCompatActivity {
         beforSendOTP();
         mAuth = FirebaseAuth.getInstance();
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ForgotPassword.this, SignIn.class);
+                startActivity(intent);
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
