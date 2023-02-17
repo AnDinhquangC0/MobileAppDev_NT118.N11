@@ -82,7 +82,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         UpdateFood = dataSnapshot.getValue(Food.class);
                         Picasso.get().load(UpdateFood.getImage()).placeholder(R.drawable.background).into(imgPicture);
                         edName.setText(UpdateFood.getName());
-                        edPrice.setText(getDecimalFormattedString(UpdateFood.getPrice()));
+                        edPrice.setText(UpdateFood.getPrice());
                         edDecription.setText(UpdateFood.getDescr());
                     }
                 }
