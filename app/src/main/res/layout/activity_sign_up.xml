@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    
     <TextView
         android:id="@+id/tv_signup_appname"
         android:layout_width="wrap_content"
@@ -19,129 +19,132 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_signup_name"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Họ và tên"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/orange"
-        android:fontFamily="sans-serif-light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_appname"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"/>
-
-    <EditText
-        android:id="@+id/et_signup_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:textSize="@dimen/text_size_middle"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="30dp"
+        android:hint="Họ và tên"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_name"
-        android:layout_marginHorizontal="24dp"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-    <TextView
-        android:id="@+id/tv_signup_phone"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/text_size_small" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_phone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Số điện thoại"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/orange"
-        android:fontFamily="sans-serif-light"
+        android:hint="Số điện thoại"
+        app:startIconDrawable="@drawable/ic_baseline_phone_24_gray"
+        app:layout_constraintTop_toBottomOf="@id/til_signup_name"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_name"
-        android:layout_marginStart="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="24dp"
+        app:endIconMode="clear_text"
         android:layout_marginTop="10dp"
-        />
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:textSize="@dimen/text_size_small"
+            android:maxLength="10"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_signup_phone"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_pass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:textSize="@dimen/text_size_middle"
+        android:hint="Mật khẩu"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24_gray"
+        app:layout_constraintTop_toBottomOf="@id/til_signup_phone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_phone"
-        android:layout_marginHorizontal="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        app:endIconMode="password_toggle"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/tv_signup_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mật khẩu"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/orange"
-        android:fontFamily="sans-serif-light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_phone"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="@dimen/text_size_small"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_signup_password"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_confirmpass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_middle"
-        android:inputType="textPassword"
+        android:hint="Xác nhận mật khẩu"
+        app:startIconDrawable="@drawable/ic_baseline_verified_user_24"
+        app:layout_constraintTop_toBottomOf="@id/til_signup_pass"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_pass"
-        android:layout_marginHorizontal="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        app:endIconMode="password_toggle"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/tv_signup_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/orange"
-        android:fontFamily="sans-serif-light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_password"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textSize="@dimen/text_size_small"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_signup_email"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_email"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:textSize="@dimen/text_size_middle"
+        android:hint="Email"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:layout_constraintTop_toBottomOf="@id/til_signup_confirmpass"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_email"
-        android:layout_marginHorizontal="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        app:endIconMode="clear_text"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/tv_signup_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Địa chỉ"
-        android:textSize="@dimen/text_size_small"
-        android:textColor="@color/orange"
-        android:fontFamily="sans-serif-light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signup_email"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/text_size_small"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_signup_address"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_signup_address"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPostalAddress"
-        android:textSize="@dimen/text_size_middle"
+        android:hint="Địa chỉ"
+        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+        app:layout_constraintTop_toBottomOf="@id/til_signup_email"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_signup_address"
-        android:layout_marginHorizontal="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        app:endIconMode="clear_text"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress"
+            android:textSize="@dimen/text_size_small"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_sign_up"
@@ -189,11 +192,11 @@
         app:itemWidth="50dp"
         app:lineColor="@color/orange"
         app:lineWidth="1dp"
-        app:layout_constraintTop_toBottomOf="@id/et_signup_address"
+        app:layout_constraintBottom_toTopOf="@id/btn_signup_verify"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:visibility="gone"
+        android:layout_marginBottom="30dp"
+
         />
 
     <Button
@@ -205,12 +208,12 @@
         android:textSize="@dimen/btn_text"
         android:textColor="@color/white"
         app:backgroundTint="@color/orange"
-        app:layout_constraintTop_toBottomOf="@id/pinview_signup"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:visibility="gone"
+        android:layout_marginBottom="50dp"
         />
 
 

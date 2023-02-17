@@ -26,7 +26,7 @@ public class SignIn extends AppCompatActivity {
     EditText etUsername,etPassword;
     Button btnSignIn;
     TextView tvRegister, tvForgot;
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
