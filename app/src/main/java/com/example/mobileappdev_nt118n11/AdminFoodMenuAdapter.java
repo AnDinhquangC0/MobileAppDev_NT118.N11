@@ -48,7 +48,7 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
         Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
         holder.item_name.setText(foodModel.getName());
         holder.item_type.setText(foodModel.getFoodtype());
-        holder.item_price.setText(foodModel.getPrice());
+        holder.item_price.setText(StrDecimalFormat(foodModel.getPrice()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
