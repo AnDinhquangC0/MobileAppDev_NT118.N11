@@ -22,6 +22,14 @@ public class Order {
         Image = image;
     }
 
+    public Order(String productId, String productName, String quantity, String price, String image) {
+        ProductId = productId;
+        ProductName = productName;
+        Quantity = quantity;
+        Price = price;
+        Image = image;
+    }
+
     public String getUserPhone() {
         return UserPhone;
     }

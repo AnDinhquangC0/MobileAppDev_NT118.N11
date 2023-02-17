@@ -82,6 +82,7 @@
         </activity>
         <activity
             android:name=".NavigationActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:exported="false"
             android:label="@string/title_activity_navigation"
             android:theme="@style/Theme.MobileAppDev_NT118N11.NoActionBar">
