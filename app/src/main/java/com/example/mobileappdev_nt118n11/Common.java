@@ -1,7 +1,18 @@
 package com.example.mobileappdev_nt118n11;
 
-import com.example.mobileappdev_nt118n11.Model.User;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.example.mobileappdev_nt118n11.Database.Database;
+import com.example.mobileappdev_nt118n11.Model.Food;
+import com.example.mobileappdev_nt118n11.Model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Common {
@@ -44,5 +55,36 @@ public class Common {
             i++;
         }
 
+    }
+
+    public static ArrayList<String> getType(){
+        ArrayList<String> foodNameList = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference().child("Type").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.exists()) {
+                        String foodItem = dataSnapshot.child("Name").getValue(String.class);
+//                    String pushkey = dataSnapshot.getKey();
+//                    Log.i("key",pushkey);
+//                    //keyList.add(pushkey);
+//                    foodItem.setId(pushkey);
+//                    recyclerFoodList.add(foodItem);
+                        foodNameList.add(foodItem);
+                    } else {
+                        Log.i("FBBinding", "Không gte đc value trong snapshot!");
+                    }
+                }
+                //materialSearchBar.setLastSuggestions(recyclerFoodList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return foodNameList;
     }
 }
