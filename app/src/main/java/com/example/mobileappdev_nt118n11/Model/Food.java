@@ -64,5 +64,4 @@ public class Food {
         Foodtype = foodtype;
     }
 
-
 }
