@@ -11,16 +11,20 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.mobileappdev_nt118n11.Model.Food;
+import com.example.mobileappdev_nt118n11.Model.TypeFood;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class AdminUpdatefoodActivity extends AppCompatActivity {
@@ -52,28 +57,66 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
     StorageReference storageReference;
     String id,url;
     String Type;
+    Spinner spnType;
+    SpinnerAdapter typeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_updatefood);
+
         edName=(EditText) findViewById(R.id.et_updatefood_name);
         edDecription=(EditText) findViewById(R.id.et_updatefood_descr);
         edPrice=(EditText) findViewById(R.id.et_updatefood_price);
-        tb_TypeFood=(Toolbar) findViewById(R.id.tb_update_typefood);
+        //tb_TypeFood=(Toolbar) findViewById(R.id.tb_update_typefood);
         imgPicture=(ImageView) findViewById(R.id.img_updatefood);
         btn_update=(Button) findViewById(R.id.btn_updatefood);
         btn_delete=(Button) findViewById(R.id.btn_deletefood);
         btn_upload=(Button)findViewById(R.id.btn_uploadpicture);
+        spnType = findViewById(R.id.spinner_type_update);
+
+
         database=FirebaseDatabase.getInstance();
         food=database.getReference("Food");
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         Intent intent = getIntent();
         id = intent.getStringExtra("adminIdKey");
-        //
+
         setSupportActionBar(tb_TypeFood);
+
+        typeAdapter = new SpinnerAdapter(this,R.layout.spinner_item_selected, new ArrayList<TypeFood>());
+        spnType.setAdapter(typeAdapter);
+        spnType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         database = FirebaseDatabase.getInstance();
+
+        database.getReference().child("Type").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    TypeFood typeModel = dataSnapshot.getValue(TypeFood.class);
+                    String pushkey = dataSnapshot.getKey().toString();
+                    Log.i("idKey type", pushkey);
+                    //keyList.add(pushkey);
+                    //foodModel.setId(pushkey);
+                    Log.i("type", typeModel.getId() + " " + typeModel.getName());
+                    typeAdapter.add(typeModel);
+                }
+            }@Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,6 +127,13 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         edName.setText(UpdateFood.getName());
                         edPrice.setText(UpdateFood.getPrice());
                         edDecription.setText(UpdateFood.getDescr());
+                        Log.i("idKey food", id);
+
+                        for (int i=0; i<typeAdapter.getCount(); i++){
+                            if (typeAdapter.getItem(i).getName().equals(UpdateFood.getFoodtype())){
+                                spnType.setSelection(i);
+                            }
+                        }
                     }
                 }
             }
@@ -132,6 +182,10 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

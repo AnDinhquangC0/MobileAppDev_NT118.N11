@@ -35,6 +35,22 @@ public class SpinnerAdapter extends ArrayAdapter<TypeFood> {
     }
 
     @Override
+    public int getPosition(@Nullable TypeFood item) {
+        return super.getPosition(item);
+    }
+
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
+
+    @Nullable
+    @Override
+    public TypeFood getItem(int position) {
+        return super.getItem(position);
+    }
+
+    @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_foodtype,parent,false);
         TextView tvType = convertView.findViewById(R.id.tv_item_type);
