@@ -189,6 +189,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         Log.i("vvo đc nè",UpdateFood.getFoodtype());
                         spnType.setSelection(i);
                         break;
+                        //String nè để test
                     }
                 }
             }
