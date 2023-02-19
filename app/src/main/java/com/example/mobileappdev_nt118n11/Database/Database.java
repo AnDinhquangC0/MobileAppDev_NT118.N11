@@ -85,6 +85,7 @@ public class Database extends SQLiteAssetHelper {
                     order.getQuantity(),
                     order.getPrice(),
                     order.getImage());
+
         }
         sqlDB.execSQL(query);
     }

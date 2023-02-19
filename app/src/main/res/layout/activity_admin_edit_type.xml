@@ -21,6 +21,7 @@
         />
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlineBox"
         android:id="@+id/til_edittype_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/CustomOutlineBox"
         android:id="@+id/til_edittype_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
