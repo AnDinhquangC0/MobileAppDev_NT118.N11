@@ -6,33 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".AdminUpdatefoodActivity">
 
+    <TextView
+        android:id="@+id/tv_updatefood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Chỉnh sửa món ăn"
+        android:textColor="@color/other_red"
+        android:textSize="@dimen/text_size_middle"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        />
+
     <Button
         android:id="@+id/btn_uploadpicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
         android:background="@drawable/btn_design_r50"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/other_red"
         android:text="  Lưu ảnh đã thay đổi   "
         android:textColor="@color/white"
         android:textSize="@dimen/btn_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_addfood" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_addfood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
     <Button
         android:id="@+id/btn_deletefood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/btn_design_r50"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/other_red"
         android:text="Xóa"
         android:textColor="@color/white"
         android:textSize="@dimen/btn_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_addfood" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_addfood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
     <ImageView
         android:id="@+id/img_updatefood"
@@ -41,7 +58,8 @@
         android:src="@drawable/ic_baseline_image_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_updatefood"
+        android:layout_marginTop="10dp"
         />
 
     <LinearLayout
@@ -49,10 +67,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginVertical="10dp"
-        android:layout_marginTop="32dp"
         android:orientation="vertical"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_updatefood">
@@ -63,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:hint="Tên món ăn"
             app:endIconMode="clear_text"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -143,14 +159,15 @@
         android:id="@+id/btn_updatefood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
         android:background="@drawable/btn_design_r50"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/other_red"
         android:text="Chỉnh sửa"
         android:textColor="@color/white"
         android:textSize="@dimen/btn_text"
         app:layout_constraintEnd_toStartOf="@+id/btn_deletefood"
         app:layout_constraintStart_toEndOf="@+id/btn_uploadpicture"
-        app:layout_constraintTop_toBottomOf="@+id/ll_addfood" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_addfood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
