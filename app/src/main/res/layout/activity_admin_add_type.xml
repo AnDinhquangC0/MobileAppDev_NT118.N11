@@ -11,6 +11,7 @@
     android:paddingHorizontal="24dp">
 
   <TextView
+      android:id="@+id/tv_addtype"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
@@ -18,6 +19,7 @@
       android:textColor="@color/other_red"
       android:textSize="@dimen/text_size_middle"
       android:textStyle="bold"
+      android:fontFamily="sans-serif"
       />
 
   <com.google.android.material.textfield.TextInputLayout
@@ -28,9 +30,6 @@
       android:layout_marginTop="30dp"
       android:hint="Mã phân loại"
       app:endIconMode="clear_text"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
       app:startIconDrawable="@drawable/ic_baseline_new_label_24">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -49,9 +48,6 @@
       android:layout_marginTop="10dp"
       android:hint="Tên phân loại"
       app:endIconMode="clear_text"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
       app:startIconDrawable="@drawable/ic_baseline_clear_all_24">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -73,15 +69,16 @@
 
   <Button
       android:id="@+id/btn_addtype"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginHorizontal="24dp"
       android:background="@drawable/btn_design_r50"
       android:backgroundTint="@color/other_red"
       android:text="Thêm"
       android:textColor="@color/white"
       android:textSize="@dimen/btn_text"
       android:layout_gravity="center"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="30dp"
       />
 
   </LinearLayout>
