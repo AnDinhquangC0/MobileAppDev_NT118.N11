@@ -10,7 +10,7 @@
         android:id="@+id/btn_uploadpicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/btn_design_r50"
         android:backgroundTint="@color/orange"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/btn_design_r50"
         android:backgroundTint="@color/orange"
         android:text="Xóa"
@@ -57,21 +57,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_updatefood">
 
-        <TextView
-            android:id="@+id/tv_updatefood_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Tên món ăn"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/text_size_small" />
+        <com.google.android.material.textfield.TextInputLayout
 
-        <EditText
-            android:id="@+id/et_updatefood_name"
+            android:id="@+id/til_updatefood_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_middle" />
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="30dp"
+            android:hint="Tên món ăn"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
+            app:startIconDrawable="@drawable/ic_baseline_fastfood_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_updatefood_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/text_size_small" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_updatefood_type"
@@ -89,37 +95,47 @@
             android:id="@+id/spinner_type_update"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_updatefood_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Giá"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/text_size_small" />
-
-        <EditText
-            android:id="@+id/et_updatefood_price"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_updatefood_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_middle" />
-
-        <TextView
-            android:id="@+id/tv_updatefood_descr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Mô tả"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/text_size_small" />
+            android:hint="Giá"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
+            app:startIconDrawable="@drawable/ic_baseline_attach_money_24">
 
-        <EditText
-            android:id="@+id/et_updatefood_descr"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_updatefood_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="@dimen/text_size_small" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_updatefood_descr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_middle" />
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="10dp"
+            android:hint="Mô tả"
+            app:endIconMode="clear_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup_appname"
+            app:startIconDrawable="@drawable/ic_baseline_description_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_updatefood_descr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="@dimen/text_size_small" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -136,6 +152,5 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_deletefood"
         app:layout_constraintStart_toEndOf="@+id/btn_uploadpicture"
         app:layout_constraintTop_toBottomOf="@+id/ll_addfood" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
