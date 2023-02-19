@@ -4,7 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +42,18 @@ public class SignIn extends AppCompatActivity {
         btnSignIn=(Button) findViewById(R.id.btn_Sign_In);
         tvRegister=(TextView)findViewById(R.id.tv_signin_register);
         tvForgot = findViewById(R.id.tv_signin_forgot);
+
+        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    btnSignIn.setFocusable(true);
+                    btnSignIn.setFocusableInTouchMode(true);
+                    btnSignIn.requestFocus();
+                }
+                return false;
+            }
+        });
 
     //Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();

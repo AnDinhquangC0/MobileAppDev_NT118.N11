@@ -35,6 +35,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_signin_appname"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="60dp"
+        android:imeOptions="actionNext"
         />
 
     <EditText
@@ -52,7 +53,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_signin_username"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:imeOptions="actionDone" />
 
     <TextView
         android:id="@+id/tv_signin_forgot"
@@ -62,8 +64,8 @@
         android:text="Quên mật khẩu?"
         android:textColor="@color/green"
         android:textSize="@dimen/text_size_small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_password"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/img_signin"
@@ -89,7 +91,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        />
 
     <TextView
         android:id="@+id/tv_signin_register"
