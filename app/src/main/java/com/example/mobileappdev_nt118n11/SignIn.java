@@ -60,6 +60,7 @@ public class SignIn extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         table_user =database.getReference("User");
 
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,13 +1,18 @@
 package com.example.mobileappdev_nt118n11.ui.cart;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,11 +29,15 @@ import com.example.mobileappdev_nt118n11.Model.Order;
 import com.example.mobileappdev_nt118n11.Model.Request;
 import com.example.mobileappdev_nt118n11.R;
 import com.example.mobileappdev_nt118n11.ui.profile.Phone;
+import com.firebase.ui.auth.util.ui.BucketedTextChangeListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class CartFragment extends Fragment {
@@ -38,21 +47,22 @@ public class CartFragment extends Fragment {
 
     ArrayList<Food> recyclerFoodList;
     FirebaseDatabase database;
-    DatabaseReference request;
+    DatabaseReference requestsTable;
     public static TextView tvTotalPrice;
     Button btnPurchase;
     TextView tvDelete;
     ArrayList<Order> cartList = new ArrayList<>();
     CartAdapter adapter;
     TextInputEditText etAddr;
+    String currentDateTime;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
-
+        currentDateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
         database = FirebaseDatabase.getInstance();
-        request = database.getReference("Request");
+        requestsTable = database.getReference("Request");
 
         recyclerView = (RecyclerView) root.findViewById(R.id.rcv_cart);
         recyclerView.setHasFixedSize(true);
@@ -62,6 +72,15 @@ public class CartFragment extends Fragment {
 
         etAddr = (TextInputEditText) root.findViewById(R.id.et_address_cart);
         etAddr.setText(Common.currentUser.getAddress());
+        etAddr.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (etAddr.getText().toString().isEmpty() || etAddr.getText().toString().replace(" ","").isEmpty())
+                        etAddr.setText(Common.currentUser.getAddress());
+                }
+            }
+        });
         tvDelete = (TextView) root.findViewById(R.id.tv_delete_cart);
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,20 +93,41 @@ public class CartFragment extends Fragment {
             }
         });
         tvTotalPrice = (TextView) root.findViewById(R.id.tv_total);
-        btnPurchase = (Button) root.findViewById(R.id.btnthanhtoan);
+        btnPurchase = (Button) root.findViewById(R.id.btn_submit_order);
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Tạo chi tiết hóa đơn
-                //Request orderRequest = new Request(Phone.Key_Phone);
+                Request orderRequest = new Request(
+                        Phone.Key_Phone,
+                        Common.currentUser.getName(),
+                        etAddr.getText().toString(),
+                        String.valueOf(getTotal(cartList)),
+                        cartList,
+                        currentDateTime
+                );
+                DatabaseReference newRequestRef = requestsTable.push();
+                String idRequest = newRequestRef.getKey();
+                requestsTable.child(idRequest).setValue(orderRequest);
 //                String order_number = String.valueOf(System.currentTimeMillis());
 //                request.child(order_number).setValue(request);
-                //new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
+                new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
+                Toast.makeText(getActivity().getBaseContext(),"Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                cartList.clear();
+                loadCartFood();
+                loadTotal(cartList);
             }
         });
+
         loadCartFood();
         loadTotal(cartList);
         return root;
+    }
+
+    private void showAlartDialog(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity().getBaseContext());
+        alertDialog.setTitle("Xác nhận");
+
     }
 
     private void loadCartFood() {
@@ -107,12 +147,18 @@ public class CartFragment extends Fragment {
 
     //Tính tổng tiền
     public void loadTotal(ArrayList<Order> list){
-        int total = 0;
-        for (Order order: list)
-            total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
-
+        int total = getTotal(list);
         tvTotalPrice.setText(StrDecimalFormat(Integer.toString(total)));
     }
+
+    public int getTotal(ArrayList<Order> list){
+        int total = 0;
+        for (Order order: list)
+            total += (Integer.valueOf(order.getPrice())) * Integer.valueOf(order.getQuantity());
+        return total;
+    }
+
+
 
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {

@@ -68,7 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:orientation="vertical"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_updatefood">
@@ -105,11 +104,11 @@
             android:textColor="@color/orange"
             android:textSize="@dimen/text_size_small" />
 
-        <EditText
-            android:id="@+id/et_updatefood_type"
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_middle" />
+            android:layout_height="45dp"
+            android:id="@+id/spinner_type_update"
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_updatefood_price"

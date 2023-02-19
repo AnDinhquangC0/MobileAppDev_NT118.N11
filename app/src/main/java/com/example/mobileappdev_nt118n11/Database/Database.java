@@ -46,15 +46,15 @@ public class Database extends SQLiteAssetHelper {
         final ArrayList<Order> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
-                int phoneCol = c.getColumnIndex("UserPhone");
+                //int phoneCol = c.getColumnIndex("UserPhone");
                 int idProductCol = c.getColumnIndex("ProductId");
                 int nameCol = c.getColumnIndex("ProductName");
                 int quantityCol = c.getColumnIndex("Quantity");
                 int priceCol = c.getColumnIndex("Price");
                 int imgCol = c.getColumnIndex("Image");
 
-                if (phoneCol!=-1 && idProductCol != -1 && nameCol!=-1 && quantityCol!=-1 && priceCol!=-1 && imgCol!=-1)
-                    result.add(new Order(c.getString(phoneCol),
+                if (idProductCol != -1 && nameCol!=-1 && quantityCol!=-1 && priceCol!=-1 && imgCol!=-1)
+                    result.add(new Order(
                             c.getString(idProductCol),
                             c.getString(nameCol),
                             c.getString(quantityCol),
@@ -102,5 +102,29 @@ public class Database extends SQLiteAssetHelper {
                 order.getUserPhone(),
                 order.getProductId());
         sqlDB.execSQL(query);
+    }
+     public void addToFavorites(String foodId){
+        SQLiteDatabase db=getReadableDatabase();
+        String query = String.format("INSERT INTO Favorites (FoodId) VALUES ('%s');",foodId);
+
+        db.execSQL(query);
+    }
+
+    public void removeToFavorites(String foodId){
+        SQLiteDatabase db=getReadableDatabase();
+        String query = String.format("DELETE FROM Favorites WHERE  FoodId='%s';", foodId);
+        db.execSQL(query);
+    }
+
+    public boolean isFavorites(String foodId){
+        SQLiteDatabase db=getReadableDatabase();
+        String query = String.format("SELECT * FROM Favorites WHERE  FoodId='%s' ;", foodId);
+        Cursor cursor = db.rawQuery(query,null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return false;
     }
 }

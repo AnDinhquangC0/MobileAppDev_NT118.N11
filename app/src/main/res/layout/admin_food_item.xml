@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/food_image"
+            android:id="@+id/food_image_admin"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="4dp"
@@ -87,7 +87,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/btn_delete"
+                android:id="@+id/btn_delete_admin"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_baseline_delete_24"
@@ -100,7 +100,7 @@
 
 
             <TextView
-                android:id="@+id/food_name"
+                android:id="@+id/food_name_admin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -133,7 +133,7 @@
                     app:tint="@color/orange"/>
 
                 <TextView
-                    android:id="@+id/food_type"
+                    android:id="@+id/food_type_admin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="2dp"
@@ -155,7 +155,7 @@
                 android:layout_margin="4dp">
 
                 <TextView
-                    android:id="@+id/food_price"
+                    android:id="@+id/food_price_admin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="top"

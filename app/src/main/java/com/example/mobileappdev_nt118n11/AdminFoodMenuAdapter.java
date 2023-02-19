@@ -4,6 +4,7 @@ import static com.example.mobileappdev_nt118n11.FoodMenuAdapter.StrDecimalFormat
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdapter.ViewHolder> {
+public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodViewHolder> {
 
     ArrayList<Food> list;
     Context context;
@@ -34,15 +35,15 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdminFoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_food_item,parent,false);
 
-        return new ViewHolder(view) ;
+        return new AdminFoodViewHolder(view) ;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdminFoodMenuAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdminFoodViewHolder holder, int position) {
 
         Food foodModel = list.get(position);
         Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
@@ -72,21 +73,28 @@ public class AdminFoodMenuAdapter extends RecyclerView.Adapter<AdminFoodMenuAdap
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+//    public class AdminFoodViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
+//
+//        ImageView item_image;
+//        TextView item_name, item_type, item_price;
+//        ImageButton btn_delete;
+//        public AdminFoodViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            item_image = (ImageView) itemView.findViewById(R.id.food_image_admin);
+//            item_name = (TextView) itemView.findViewById(R.id.food_name_admin);
+//            item_type = (TextView) itemView.findViewById(R.id.food_type_admin);
+//            item_price = (TextView) itemView.findViewById(R.id.food_price_admin);
+//            btn_delete = (ImageButton) itemView.findViewById(R.id.btn_delete_admin);
+//            itemView.setOnCreateContextMenuListener(this);
+//        }
+//
+//        @Override
+//        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+//            //contextMenu.setHeaderTitle("Select action");
+//            contextMenu.add(0,0,getAdapterPosition(),Common.DELETE);
+//        }
+//    }
 
-        ImageView item_image;
-        TextView item_name, item_type, item_price;
-        ImageButton btn_delete;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            item_image = (ImageView) itemView.findViewById(R.id.food_image);
-            item_name = (TextView) itemView.findViewById(R.id.food_name);
-            item_type = (TextView) itemView.findViewById(R.id.food_type);
-            item_price = (TextView) itemView.findViewById(R.id.food_price);
-            btn_delete = (ImageButton) itemView.findViewById(R.id.btn_delete);
-        }
-    }
 
-    //Ngắt số vd: xxxxxx -> xxx,xxx
 
 }

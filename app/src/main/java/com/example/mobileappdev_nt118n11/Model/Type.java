@@ -1,19 +1,15 @@
 package com.example.mobileappdev_nt118n11.Model;
 
-public class TypeFood {
+public class Type {
     private String Id;
     private String Name;
 
-    public TypeFood(String id, String name) {
+    public Type(String id, String name) {
         Id = id;
         Name = name;
     }
 
-    public TypeFood(String name) {
-        Name = name;
-    }
-
-    public TypeFood() {
+    public Type() {
     }
 
     public String getId() {
