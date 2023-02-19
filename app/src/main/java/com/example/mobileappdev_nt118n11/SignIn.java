@@ -5,9 +5,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +38,9 @@ public class SignIn extends AppCompatActivity {
     Button btnSignIn;
     TextView tvRegister, tvForgot;
 
+    FirebaseDatabase database;
+    DatabaseReference table_user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -42,55 +53,25 @@ public class SignIn extends AppCompatActivity {
         tvRegister=(TextView)findViewById(R.id.tv_signin_register);
         tvForgot = findViewById(R.id.tv_signin_forgot);
 
+        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    signin();
+                }
+                return false;
+            }
+        });
+
     //Firebase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference table_user =database.getReference("User");
+        database = FirebaseDatabase.getInstance();
+        table_user =database.getReference("User");
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-                mDialog.setMessage("Please waiting....");
-                mDialog.show();
-
-                if(etUsername.getText().toString().equals("118118118")&&etPassword.getText().toString().equals("NT118.N11"))
-                {
-                    Toast.makeText(SignIn.this, "Sign in with Admin Successfull !", Toast.LENGTH_SHORT).show();
-                    Intent Management = new Intent(SignIn.this,ManagementActivity.class);
-                    startActivity(Management);
-                }
-                else{
-                    table_user.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
-                                mDialog.dismiss();
-                                User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
-                                if (user.getPassword().equals(etPassword.getText().toString())) {
-                                    Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
-                                    Intent Home = new Intent(SignIn.this,NavigationActivity.class);
-                                    Phone.Key_Phone=etUsername.getText().toString().trim();
-                                    Common.currentUser = user;
-                                    startActivity(Home);
-                                    finish();
-                                } else
-                                    Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(SignIn.this,"User not exist",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-
+                signin();
             }
         });
         tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +90,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -124,5 +106,48 @@ public class SignIn extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent( event );
+
+
+    private void signin() {
+        ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+        mDialog.setMessage("Please waiting....");
+        mDialog.show();
+
+        if(etUsername.getText().toString().equals("118118118")&&etPassword.getText().toString().equals("NT118.N11"))
+        {
+            Toast.makeText(SignIn.this, "Sign in with Admin Successfull !", Toast.LENGTH_SHORT).show();
+            Intent Management = new Intent(SignIn.this,ManagementActivity.class);
+            startActivity(Management);
+        }
+        else{
+            table_user.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
+                        mDialog.dismiss();
+                        User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
+                        if (user.getPassword().equals(etPassword.getText().toString())) {
+                            Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
+                            Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                            Phone.Key_Phone=etUsername.getText().toString().trim();
+                            Common.currentUser = user;
+                            startActivity(Home);
+                            finish();
+                        } else
+                            Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(SignIn.this,"User not exist",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
     }
 }
