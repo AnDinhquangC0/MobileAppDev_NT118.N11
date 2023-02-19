@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="10dp"
     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
     >
 
@@ -17,13 +17,13 @@
             android:id="@+id/tv_type_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:text="01"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_middle"
             android:layout_gravity="center"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             />
 
         <TextView
@@ -47,7 +47,7 @@
             android:textColor="@color/white"
             android:background="@drawable/btn_design_r50"
             android:backgroundTint="@color/other_red"
-            android:layout_margin="5dp"/>
+            android:layout_margin="10dp"/>
 
     </LinearLayout>
 
