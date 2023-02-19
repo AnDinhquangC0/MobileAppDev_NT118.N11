@@ -29,8 +29,7 @@ public class ProfileFragment extends Fragment {
     private FragmentHomeBinding binding;
     private String key;
     private FirebaseDatabase database;
-    private TextView tvPhone;
-    private EditText edName, edEmail,edAddress;
+    private EditText etName, etEmail, etAddress, etPhone;
     private Button btnUpdate, btnChangePass;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +44,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.child(key).getValue(User.class);
-                tvPhone.setText(key);
-                edName.setText(user.getName());
-                edEmail.setText(user.getGmail());
-                edAddress.setText(user.getAddress());
+                etPhone.setText(key);
+                etName.setText(user.getName());
+                etEmail.setText(user.getGmail());
+                etAddress.setText(user.getAddress());
             }
 
             @Override
@@ -59,9 +58,9 @@ public class ProfileFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database.getReference().child("User").child(key).child("Name").setValue(edName.getText().toString());
-                database.getReference().child("User").child(key).child("Address").setValue(edAddress.getText().toString());
-                database.getReference().child("User").child(key).child("Gmail").setValue(edEmail.getText().toString());
+                database.getReference().child("User").child(key).child("Name").setValue(etName.getText().toString());
+                database.getReference().child("User").child(key).child("Address").setValue(etAddress.getText().toString());
+                database.getReference().child("User").child(key).child("Gmail").setValue(etEmail.getText().toString());
 
             }
         });
@@ -77,10 +76,11 @@ public class ProfileFragment extends Fragment {
     }
 
     public void init(View root) {
-        edName = root.findViewById(R.id.tv_profile_name);
-        tvPhone = root.findViewById(R.id.tv_profile_phone);
-        edEmail = root.findViewById(R.id.tv_profile_email);
-        edAddress = root.findViewById(R.id.tv_profile_address);
+        etName = root.findViewById(R.id.et_profile_name);
+        etPhone = root.findViewById(R.id.et_profile_phone);
+        etPhone.setEnabled(false);
+        etEmail = root.findViewById(R.id.et_profile_email);
+        etAddress = root.findViewById(R.id.et_profile_address);
         btnUpdate =root.findViewById(R.id.btn_profile_Edit);
         btnChangePass=root.findViewById(R.id.btn_profile_ChangePass);
     }
