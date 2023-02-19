@@ -25,16 +25,6 @@
     <com.google.android.material.textfield.TextInputLayout
         style="@style/CustomOutlineBox"
       android:id="@+id/til_addtype_id"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="24dp"
-      android:layout_marginTop="30dp"
-      android:hint="Mã phân loại"
-      app:endIconMode="clear_text"
-      app:startIconDrawable="@drawable/ic_baseline_new_label_24">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_addtype_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
