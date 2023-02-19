@@ -21,6 +21,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_name"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -42,6 +43,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_phone"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Số điện thoại"
@@ -64,6 +66,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_pass"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Mật khẩu"
@@ -85,6 +88,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_confirmpass"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Xác nhận mật khẩu"
@@ -106,6 +110,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_email"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
@@ -127,6 +132,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_signup_address"
+        style="@style/CustomOutlineBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Địa chỉ"
