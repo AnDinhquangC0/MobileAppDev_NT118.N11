@@ -2,6 +2,7 @@ package com.example.mobileappdev_nt118n11;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.cart_name.setText(foodModel.getProductName());
         holder.cart_price.setText(StrDecimalFormat(foodModel.getPrice()));
         holder.btn_quantity.setNumber(foodModel.getQuantity());
+        Log.i("order holder", foodModel.getQuantity() +" "+foodModel.getUserPhone()+" "+foodModel.getProductId()+" "+foodModel.getPrice());
         holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
@@ -58,8 +60,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
                 int total = 0;
                 ArrayList<Order> orderList = new Database(context).getCart(Phone.Key_Phone);
-                for (Order order: orderList)
+                for (Order order: orderList) {
                     total += (Integer.parseInt(order.getPrice())) * Integer.parseInt(order.getQuantity());
+                    Log.i("order holder,tănggiảm", order.getQuantity() +" "+order.getUserPhone()+" "+order.getProductId()+" "+order.getPrice());
+
+                }
 
                 CartFragment.tvTotalPrice.setText(StrDecimalFormat(Integer.toString(total)));
             }

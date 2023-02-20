@@ -156,9 +156,8 @@ public class CartFragment extends Fragment {
     }
 
     private void loadCartFood() {
-        if (cartList.size() == 0)
-            cartList = new Database(getActivity().getBaseContext()).getCart(Phone.Key_Phone);
-        else{}
+        cartList = new Database(getActivity().getBaseContext()).getCart(Phone.Key_Phone);
+
 
         adapter = new CartAdapter(cartList,getActivity().getBaseContext());
         adapter.notifyDataSetChanged();
