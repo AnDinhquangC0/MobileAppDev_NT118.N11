@@ -242,6 +242,7 @@ public class AdminAddfoodActivity extends AppCompatActivity {
                                     Random random=new Random();
                                     int number = random.nextInt();
                                     String IDFood = String.valueOf(number);
+                                    Type = typeAdapter.getItem(spnType.getSelectedItemPosition()).getName();
                                     newFood = new Food(edName.getText().toString(),uri.toString(),edDecription.getText().toString(),edPrice.getText().toString(),Type);
 
                                     food.child(IDFood).setValue(newFood);

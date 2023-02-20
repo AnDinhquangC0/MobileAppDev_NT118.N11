@@ -253,6 +253,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Type = typeAdapter.getItem(spnType.getSelectedItemPosition()).getName();
                 UpdateFood.setName(edName.getText().toString());
                 UpdateFood.setFoodtype(Type);
                 UpdateFood.setDescr(edDecription.getText().toString());
