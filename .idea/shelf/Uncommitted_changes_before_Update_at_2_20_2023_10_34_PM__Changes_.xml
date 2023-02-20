@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_2_20_2023_10_34_PM_[Changes]" date="1676907257475" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_2023_10_34_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2/20/2023 10:34 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="app/src/main/assets/databases/LocalFoodDB.db" />
+    <option name="AFTER_PATH" value="app/src/main/assets/databases/LocalFoodDB.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_20_2023_10_34_PM_[Changes]/LocalFoodDB.db" />
+  </binary>
+</changelist>
