@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mobileappdev_nt118n11.AsyncTask.FBDataBindingAsyncTask;
+import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -44,8 +45,9 @@ public class SearchActivity extends AppCompatActivity {
     String searchKeyword;
     ArrayList<Food> recyclerFoodList;
     FirebaseDatabase database;
-    DatabaseReference dbRefFoodMenu;
+
     Database localDB;
+    DatabaseReference dbRefFoodMenu;
     EditText etSearch;
     FoodMenuAdapter recyclerAdapter;
     MaterialSearchBar materialSearchBar;
@@ -60,11 +62,11 @@ public class SearchActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         dbRefFoodMenu = database.getReference().child("Food");
-        /////////////Local DB
-        localDB=new Database(this);
-        
+
         rcvFoodList = findViewById(R.id.rcv_food_menu_search);
         rcvFoodList.setHasFixedSize(true);
+        /////////////////////
+        localDB=new Database(this);
         //layoutManager = new LinearLayoutManager(fragmentContext);
         layoutManager = new LinearLayoutManager(this);
         rcvFoodList.setLayoutManager(layoutManager);
@@ -136,27 +138,6 @@ public class SearchActivity extends AppCompatActivity {
                         intent.putExtra("idKey", key);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                        
-                        //////Add Favorites
-                        if(localDB.isFavorites(menuAdapter.getRef(position).getKey()))
-                        {
-                            holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        }
-                        ////////////////Click to change state of Favorites
-                       holder.fav_image.setOnClickListener(new View.OnClickListener() {
-                           @Override
-                           public void onClick(View view) {
-                               if (!localDB.isFavorites(menuAdapter.getRef(position).getKey())) {
-                                   localDB.addToFavorites(menuAdapter.getRef(position).getKey());
-                                   holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
-                                   Toast.makeText(getBaseContext(), "" + foodModel.getName() + "was added to Favorites", Toast.LENGTH_SHORT).show();
-                               } else {
-                                   localDB.addToFavorites(menuAdapter.getRef(position).getKey());
-                                   holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
-                                   Toast.makeText(getBaseContext(), "" + foodModel.getName() + "was removed from Favorites", Toast.LENGTH_SHORT).show();
-                               }
-                           }
-                       });
                     }
                 });
             }
@@ -184,6 +165,25 @@ public class SearchActivity extends AppCompatActivity {
                 holder.item_name.setText(foodModel.getName());
                 holder.item_type.setText(foodModel.getFoodtype());
                 holder.item_price.setText(StrDecimalFormat(foodModel.getPrice()));
+                ///add favorite
+                if(localDB.isFavorites(menuAdapter.getRef(position).getKey())){
+                    holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
+                }
+                ///////Click button tym
+                holder.fav_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!localDB.isFavorites(menuAdapter.getRef(position).getKey())) {
+                            localDB.addToFavorites(menuAdapter.getRef(position).getKey());
+                            holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
+                            Toast.makeText(getBaseContext(), "" + foodModel.getName() + "was added to Favorites", Toast.LENGTH_SHORT).show();
+                        } else {
+                            localDB.addToFavorites(menuAdapter.getRef(position).getKey());
+                            holder.fav_image.setImageResource(R.drawable.ic_baseline_favorite_24);
+                            Toast.makeText(getBaseContext(), "" + foodModel.getName() + "was removed from Favorites", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
