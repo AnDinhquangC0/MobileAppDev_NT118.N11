@@ -2,12 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    
+
+    <ImageView
+        android:id="@+id/iv_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_baseline_filter_alt_24"
+        android:backgroundTint="#666666"
+        android:layout_marginStart="12dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_selected"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:padding="10dp"/>
+        android:textSize="15sp"
+        android:text="Có ai "
+        android:padding="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/iv_filter"
+        android:layout_toStartOf="@id/iv_dropdown"/>
+    <ImageView
+        android:id="@+id/iv_dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_baseline_arrow_drop_down_24"
+        android:backgroundTint="#666666"
+        android:layout_marginEnd="12dp"/>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.mobileappdev_nt118n11.ui.cart;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -98,24 +99,14 @@ public class CartFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Tạo chi tiết hóa đơn
-                Request orderRequest = new Request(
-                        Phone.Key_Phone,
-                        Common.currentUser.getName(),
-                        etAddr.getText().toString(),
-                        String.valueOf(getTotal(cartList)),
-                        cartList,
-                        currentDateTime
-                );
-                DatabaseReference newRequestRef = requestsTable.push();
-                String idRequest = newRequestRef.getKey();
-                requestsTable.child(idRequest).setValue(orderRequest);
-//                String order_number = String.valueOf(System.currentTimeMillis());
-//                request.child(order_number).setValue(request);
-                new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
-                Toast.makeText(getActivity().getBaseContext(),"Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                cartList.clear();
-                loadCartFood();
-                loadTotal(cartList);
+                if (cartList.size() > 0){
+                    makeRequest();
+                }
+                else
+                {
+                    Toast.makeText(getActivity().getBaseContext(),"Giỏ hàng không có sản phẩm!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -124,15 +115,50 @@ public class CartFragment extends Fragment {
         return root;
     }
 
-    private void showAlartDialog(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity().getBaseContext());
-        alertDialog.setTitle("Xác nhận");
+
+
+    private void makeRequest(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setTitle("Xác nhận đặt hàng");
+        builder.setMessage("Bạn xác nhận đặt đơn hàng này?");
+        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Request orderRequest = new Request(
+                                Phone.Key_Phone,
+                                Common.currentUser.getName(),
+                                etAddr.getText().toString(),
+                                String.valueOf(getTotal(cartList)),
+                                cartList,
+                                currentDateTime
+                        );
+                        DatabaseReference newRequestRef = requestsTable.push();
+                        String idRequest = newRequestRef.getKey();
+                        requestsTable.child(idRequest).setValue(orderRequest);
+//                String order_number = String.valueOf(System.currentTimeMillis());
+//                request.child(order_number).setValue(request);
+                        new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);
+                        Toast.makeText(getActivity().getBaseContext(),"Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                        cartList.clear();
+                        loadCartFood();
+                        loadTotal(cartList);
+                    }
+                });
+        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 
     private void loadCartFood() {
-
         cartList = new Database(getActivity().getBaseContext()).getCart(Phone.Key_Phone);
+
+
         adapter = new CartAdapter(cartList,getActivity().getBaseContext());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
@@ -159,20 +185,20 @@ public class CartFragment extends Fragment {
     }
 
 
-
+    // tạo context menu cho adapter, khi chọn xóa sẽ xóa món
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
     }
-
+    // tạo context menu cho adapter, khi chọn xóa sẽ xóa món
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (item.getTitle().equals(Common.DELETE))
             deleteCart(item.getOrder());
         return super.onContextItemSelected(item);
     }
-
+    //hàm xóa 1 món khỏi database
     private void deleteCart(int pos){
         cartList.remove(pos);
         new Database(getActivity().getBaseContext()).cleanCart(Phone.Key_Phone);

@@ -93,7 +93,8 @@
         <activity
             android:name=".FoodDetailActivity"
             android:exported="false" />
-        <activity android:name=".SignIn" />
+        <activity android:name=".SignIn"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SignUp" />
         <activity
             android:name=".MainActivity"

@@ -6,13 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -134,6 +137,23 @@ public class AdminAddfoodActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
+    }
+
 //    private ArrayList<TypeFood> getTypeList(){
 //        ArrayList<TypeFood> typeList = new ArrayList<TypeFood>();
 //        typeDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -222,6 +242,7 @@ public class AdminAddfoodActivity extends AppCompatActivity {
                                     Random random=new Random();
                                     int number = random.nextInt();
                                     String IDFood = String.valueOf(number);
+                                    Type = typeAdapter.getItem(spnType.getSelectedItemPosition()).getName();
                                     newFood = new Food(edName.getText().toString(),uri.toString(),edDecription.getText().toString(),edPrice.getText().toString(),Type);
 
                                     food.child(IDFood).setValue(newFood);
