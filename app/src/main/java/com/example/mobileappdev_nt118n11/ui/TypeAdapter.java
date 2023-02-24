@@ -53,6 +53,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHolder
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, AdminEditTypeActivity.class);
                     intent.putExtra("TYPE_ID", typeFood.getId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }
             });

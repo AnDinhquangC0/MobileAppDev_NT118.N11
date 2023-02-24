@@ -13,8 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileAppDev_NT118N11"
-        tools:targetApi="31"
-        tools:replace="android:theme">
+        tools:replace="android:theme"
+        tools:targetApi="31">
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".AdminUpdatefoodActivity"
             android:exported="false">
@@ -82,10 +89,10 @@
         </activity>
         <activity
             android:name=".NavigationActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
             android:exported="false"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/Theme.MobileAppDev_NT118N11.NoActionBar">
+            android:theme="@style/Theme.MobileAppDev_NT118N11.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -93,7 +100,8 @@
         <activity
             android:name=".FoodDetailActivity"
             android:exported="false" />
-        <activity android:name=".SignIn"
+        <activity
+            android:name=".SignIn"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SignUp" />
         <activity

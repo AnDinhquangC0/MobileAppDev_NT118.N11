@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SignIn extends AppCompatActivity {
     EditText etUsername,etPassword;
     Button btnSignIn;
-    TextView tvRegister, tvForgot;
+    TextView tvRegister, tvForgot, tvNotify;
 
     FirebaseDatabase database;
     DatabaseReference table_user;
@@ -46,7 +46,6 @@ public class SignIn extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
         etPassword =(EditText)findViewById(R.id.et_signin_password);
         etUsername =(EditText) findViewById(R.id.et_signin_username);
         btnSignIn=(Button) findViewById(R.id.btn_Sign_In);
@@ -116,39 +115,45 @@ public class SignIn extends AppCompatActivity {
 
         if(etUsername.getText().toString().equals("118118118")&&etPassword.getText().toString().equals("NT118.N11"))
         {
-            Toast.makeText(SignIn.this, "Sign in with Admin Successfull !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignIn.this, "Đăng nhập admin thành công!", Toast.LENGTH_SHORT).show();
             Intent Management = new Intent(SignIn.this,ManagementActivity.class);
             startActivity(Management);
         }
         else{
-            table_user.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
-                        mDialog.dismiss();
-                        User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
-                        if (user.getPassword().equals(etPassword.getText().toString())) {
-                            Toast.makeText(SignIn.this, "Sign in Successfull !", Toast.LENGTH_SHORT).show();
-                            Intent Home = new Intent(SignIn.this,NavigationActivity.class);
-                            Phone.Key_Phone=etUsername.getText().toString().trim();
-                            Common.currentUser = user;
-                            startActivity(Home);
-                            finish();
-                        } else
-                            Toast.makeText(SignIn.this, "Sign in Faile !", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(SignIn.this,"User not exist",Toast.LENGTH_SHORT).show();
-                    }
-                }
+            table_user
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.child(etUsername.getText().toString()).exists()) {
+                                mDialog.dismiss();
+                                User user = dataSnapshot.child(etUsername.getText().toString()).getValue(User.class);
+                                if (user.getPassword().equals(etPassword.getText().toString())) {
+                                    Intent Home = new Intent(SignIn.this,NavigationActivity.class);
+                                    Phone.Key_Phone=etUsername.getText().toString().trim();
+                                    Common.currentUser = user;
+                                    Toast.makeText(SignIn.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                                    startActivity(Home);
+                                    finish();
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                                } else
+                                    Toast.makeText(SignIn.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(SignIn.this,"Tài khoản không tồn tại",Toast.LENGTH_SHORT).show();
+                            }
+                            table_user.removeEventListener(this);
+                        }
 
-                }
-            });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
         }
 
+    }
+    protected void onStop() {
+        super.onStop();  // Always call the superclass method first
     }
 }
