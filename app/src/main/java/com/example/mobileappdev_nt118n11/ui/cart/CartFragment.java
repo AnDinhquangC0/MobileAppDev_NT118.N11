@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,8 @@ public class CartFragment extends Fragment {
     DatabaseReference requestsTable;
     public static TextView tvTotalPrice;
     Button btnPurchase;
-    TextView tvDelete;
+    TextView tvDelete, tvNotify, tvTitle, tvSymbol;
+    ImageView imgNotify;
     ArrayList<Order> cartList = new ArrayList<>();
     CartAdapter adapter;
     TextInputEditText etAddr;
@@ -65,6 +67,10 @@ public class CartFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         requestsTable = database.getReference("Request");
 
+        tvSymbol = root.findViewById(R.id.tv_symbol);
+        tvTitle = root.findViewById(R.id.tv_title);
+        tvNotify = root.findViewById(R.id.tv_notifycation_cart);
+        imgNotify = root.findViewById(R.id.img_notifycation_cart);
         recyclerView = (RecyclerView) root.findViewById(R.id.rcv_cart);
         recyclerView.setHasFixedSize(true);
         //layoutManager = new LinearLayoutManager(fragmentContext);
@@ -109,6 +115,7 @@ public class CartFragment extends Fragment {
 
             }
         });
+
 
         loadCartFood();
         loadTotal(cartList);
@@ -157,11 +164,28 @@ public class CartFragment extends Fragment {
 
     private void loadCartFood() {
         cartList = new Database(getActivity().getBaseContext()).getCart(Phone.Key_Phone);
-
-
+        if (cartList.isEmpty()){
+            tvDelete.setVisibility(View.GONE);
+            imgNotify.setVisibility(View.VISIBLE);
+            tvNotify.setVisibility(View.VISIBLE);
+            btnPurchase.setVisibility(View.GONE);
+            tvTotalPrice.setVisibility(View.GONE);
+            tvTitle.setVisibility(View.GONE);
+            tvSymbol.setVisibility(View.GONE);
+        } else {
+            tvDelete.setVisibility(View.VISIBLE);
+            imgNotify.setVisibility(View.GONE);
+            tvNotify.setVisibility(View.GONE);
+            btnPurchase.setVisibility(View.VISIBLE);
+            tvTotalPrice.setVisibility(View.VISIBLE);
+            tvTitle.setVisibility(View.VISIBLE);
+            tvSymbol.setVisibility(View.VISIBLE);
+        }
         adapter = new CartAdapter(cartList,getActivity().getBaseContext());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
+
+
 
 
 //        int total = 0;

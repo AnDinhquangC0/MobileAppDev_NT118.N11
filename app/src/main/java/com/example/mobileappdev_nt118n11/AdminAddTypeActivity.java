@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -51,6 +52,8 @@ public class AdminAddTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addType();
+                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
             }
         });
 
@@ -77,9 +80,9 @@ public class AdminAddTypeActivity extends AppCompatActivity {
                         mDialog.dismiss();
                         TypeFood typeFood = new TypeFood(etName.getText().toString());
                         databaseReference.child(etId.getText().toString()).setValue(typeFood);
-                        Intent intent = new Intent(AdminAddTypeActivity.this, ManagementActivity.class);
-                        startActivity(intent);
-                        finish();
+//                        Intent intent = new Intent(AdminAddTypeActivity.this, ManagementActivity.class);
+//                        startActivity(intent);
+//                        finish();
                     }
                 }
             }

@@ -17,11 +17,12 @@
         android:id="@+id/layout_et_addr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         app:endIconMode="clear_text"
         android:hint="Địa chỉ giao hàng"
-        app:layout_constraintEnd_toStartOf="@id/tv_delete_cart"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_location_on_24">
 
@@ -35,19 +36,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_delete_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:text="Xóa giỏ hàng"
-        android:textColor="@color/orange"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/layout_et_addr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/layout_et_addr"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_cart"
         android:layout_width="match_parent"
@@ -57,6 +45,46 @@
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_et_addr" />
+
+    <TextView
+        android:id="@+id/tv_delete_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:text="Xóa giỏ hàng"
+        android:textColor="@color/orange"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcv_cart"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_notifycation_cart"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_et_addr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        android:src="@drawable/ic_baseline_remove_shopping_cart_24"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/tv_notifycation_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:text="Bạn chưa chọn món"
+        android:textColor="@color/gray_600"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_notifycation_cart"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="gone"/>
 
     <View
         android:id="@+id/view2"
@@ -75,8 +103,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btn_submit_order"
+        android:layout_marginBottom="18dp">
 
         <TextView
             android:id="@+id/tv_total"
@@ -88,6 +117,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_symbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -100,6 +130,7 @@
 
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginTop="8dp"
@@ -110,23 +141,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
-
-    <Button
-        android:id="@+id/btntieptucmuasam"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/btn_design_r50"
-        android:padding="8dp"
-        android:text="Tiếp tục mua sắm"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        app:backgroundTint="#ff3300"
-        app:layout_constraintTop_toBottomOf="@id/btn_submit_order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/btn_submit_order"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/btn_submit_order"
@@ -138,8 +154,9 @@
         android:textAllCaps="true"
         android:textColor="@color/white"
         app:backgroundTint="#ff3300"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="30dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

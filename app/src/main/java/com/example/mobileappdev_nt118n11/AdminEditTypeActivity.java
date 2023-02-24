@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -64,8 +65,10 @@ public class AdminEditTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firebaseDatabase.getReference().child("Type").child(ID).setValue(new TypeFood(etName.getText().toString().trim()));
-                Intent intent = new Intent(AdminEditTypeActivity.this, ManagementActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AdminEditTypeActivity.this, ManagementActivity.class);
+//                startActivity(intent);
+                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
             }
         });
     }

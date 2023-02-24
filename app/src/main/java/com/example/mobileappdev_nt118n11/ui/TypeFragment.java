@@ -43,20 +43,21 @@ public class TypeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_type, container, false);
 
         rcvType = root.findViewById(R.id.rcv_admin_type);
-        typeAdapter = new TypeAdapter(getActivity());
+        typeAdapter = new TypeAdapter(getActivity().getBaseContext());
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), RecyclerView.VERTICAL, false);
         rcvType.setLayoutManager(linearLayoutManager);
 
-        rcvType.setAdapter(typeAdapter);
         typeAdapter.setData(getListType());
+        rcvType.setAdapter(typeAdapter);
 
         //Add new Type
         fbtnAdd = root.findViewById(R.id.fbtn_type_add);
         fbtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AdminAddTypeActivity.class);
+                Intent intent = new Intent(getActivity().getBaseContext(), AdminAddTypeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -85,5 +86,12 @@ public class TypeFragment extends Fragment {
             }
         });
         return list;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        typeAdapter.setData(getListType());
+
     }
 }

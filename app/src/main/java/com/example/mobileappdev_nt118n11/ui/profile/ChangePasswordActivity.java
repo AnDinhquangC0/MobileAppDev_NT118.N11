@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.mobileappdev_nt118n11.Model.User;
 import com.example.mobileappdev_nt118n11.R;
 import com.example.mobileappdev_nt118n11.SignIn;
+import com.example.mobileappdev_nt118n11.UpdateProfileActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,11 +57,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     if(ed_newpassword.getText().toString().equals(ed_confimpassword.getText().toString()))
                     {
                         database.getReference().child("User").child(Phone.Key_Phone).child("Password").setValue(ed_newpassword.getText().toString());
-                        Toast.makeText(ChangePasswordActivity.this, "Đổi mật khẩu thành công, vui lòng đăng nhập lại !", Toast.LENGTH_SHORT).show();
-                        Intent signin = new Intent(ChangePasswordActivity.this, SignIn.class);
-                        startActivity(signin);
-                        finish();
-                    }
+                        Toast.makeText(ChangePasswordActivity.this, "Đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));                    }
                     else
                     {
                         Toast.makeText(ChangePasswordActivity.this, "Mật khẩu không khớp.", Toast.LENGTH_SHORT).show();
@@ -69,6 +69,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 {
                     Toast.makeText(ChangePasswordActivity.this, "Mật khẩu hiện tại không đúng.", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     };

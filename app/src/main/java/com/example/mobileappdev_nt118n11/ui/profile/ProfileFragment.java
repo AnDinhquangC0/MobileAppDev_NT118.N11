@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.mobileappdev_nt118n11.Model.User;
 import com.example.mobileappdev_nt118n11.R;
 import com.example.mobileappdev_nt118n11.SignIn;
+import com.example.mobileappdev_nt118n11.UpdateProfileActivity;
 import com.example.mobileappdev_nt118n11.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,10 +59,8 @@ public class ProfileFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database.getReference().child("User").child(key).child("Name").setValue(etName.getText().toString());
-                database.getReference().child("User").child(key).child("Address").setValue(etAddress.getText().toString());
-                database.getReference().child("User").child(key).child("Gmail").setValue(etEmail.getText().toString());
-
+                Intent UpdateFrofile = new Intent(getActivity(), UpdateProfileActivity.class);
+                startActivity(UpdateFrofile);
             }
         });
         btnChangePass.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +76,13 @@ public class ProfileFragment extends Fragment {
     public void init(View root) {
         etName = root.findViewById(R.id.et_profile_name);
         etPhone = root.findViewById(R.id.et_profile_phone);
-        etPhone.setEnabled(false);
         etEmail = root.findViewById(R.id.et_profile_email);
         etAddress = root.findViewById(R.id.et_profile_address);
         btnUpdate =root.findViewById(R.id.btn_profile_Edit);
         btnChangePass=root.findViewById(R.id.btn_profile_ChangePass);
+        etPhone.setEnabled(false);
+        etAddress.setEnabled(false);
+        etName.setEnabled(false);
+        etEmail.setEnabled(false);
     }
 }
