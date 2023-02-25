@@ -52,8 +52,6 @@ public class AdminAddTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addType();
-                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
-                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
             }
         });
 
@@ -61,7 +59,7 @@ public class AdminAddTypeActivity extends AppCompatActivity {
 
     private void addType() {
         mDialog = new ProgressDialog(AdminAddTypeActivity.this);
-        mDialog.setMessage("Please waiting....");
+        mDialog.setMessage("Vui lòng đợi....");
         mDialog.show();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -71,20 +69,26 @@ public class AdminAddTypeActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (etId.getText().toString().trim().equals("") == true || etName.getText().toString().trim().equals("") == true) {
                     mDialog.dismiss();
-                    Toast.makeText(AdminAddTypeActivity.this, "Bạn cần nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddTypeActivity.this, "Bạn cần nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (snapshot.child(etId.getText().toString().trim()).exists()) {
                         mDialog.dismiss();
-                        tvNotify.setVisibility(View.VISIBLE);
+                        //tvNotify.setVisibility(View.VISIBLE);
+                        Toast.makeText(AdminAddTypeActivity.this, "Mã đã tồn tại!", Toast.LENGTH_SHORT).show();
+
                     } else {
                         mDialog.dismiss();
                         TypeFood typeFood = new TypeFood(etName.getText().toString());
                         databaseReference.child(etId.getText().toString()).setValue(typeFood);
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
 //                        Intent intent = new Intent(AdminAddTypeActivity.this, ManagementActivity.class);
 //                        startActivity(intent);
 //                        finish();
                     }
                 }
+                databaseReference.removeEventListener(this);
+
             }
 
             @Override

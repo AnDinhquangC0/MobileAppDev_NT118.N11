@@ -105,7 +105,7 @@ public class FoodDetailActivity extends AppCompatActivity {
                         foodDetail.getImage()
                 ));
 
-                Toast.makeText(FoodDetailActivity.this,"Added to cart",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FoodDetailActivity.this,"Đã thêm vào giỏ hàng",Toast.LENGTH_SHORT).show();
             }
         });
         tvQuantity = (TextView) findViewById(R.id.tv_number);

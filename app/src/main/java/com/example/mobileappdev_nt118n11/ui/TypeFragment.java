@@ -24,6 +24,7 @@ import com.example.mobileappdev_nt118n11.SignIn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -68,7 +69,8 @@ public class TypeFragment extends Fragment {
     private ArrayList<TypeFood> getListType() {
         ArrayList<TypeFood> list = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
-        database.getReference().child("Type").addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference dbRef = database.getReference().child("Type");
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -78,6 +80,7 @@ public class TypeFragment extends Fragment {
                     list.add(typeFood);
                 }
                 typeAdapter.notifyDataSetChanged();
+                //dbRef.removeEventListener(this);
             }
 
             @Override
@@ -92,6 +95,6 @@ public class TypeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         typeAdapter.setData(getListType());
-
+        rcvType.setAdapter(typeAdapter);
     }
 }

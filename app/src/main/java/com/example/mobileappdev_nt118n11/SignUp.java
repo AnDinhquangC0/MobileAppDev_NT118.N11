@@ -74,7 +74,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
 
                 mDialog = new ProgressDialog(SignUp.this);
-                mDialog.setMessage("Please waiting....");
+                mDialog.setMessage("Vui lòng đợi....");
                 mDialog.show();
                 phoneNo = etPhone.getText().toString().trim();
                 name = etName.getText().toString().trim();
@@ -105,6 +105,7 @@ public class SignUp extends AppCompatActivity {
                                 }
                             }
                         }
+                        table_user.removeEventListener(this);
                     }
 
                     @Override

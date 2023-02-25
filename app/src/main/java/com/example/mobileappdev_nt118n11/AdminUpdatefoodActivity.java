@@ -5,7 +5,9 @@ import static com.example.mobileappdev_nt118n11.FoodDetailActivity.getDecimalFor
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -366,7 +368,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("Đang tải...");
             progressDialog.show();
 
             StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
@@ -375,7 +377,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(AdminUpdatefoodActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminUpdatefoodActivity.this, "Đã tải xong", Toast.LENGTH_SHORT).show();
                             ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
@@ -397,7 +399,7 @@ public class AdminUpdatefoodActivity extends AppCompatActivity {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Đang tải "+(int)progress+"%");
                         }
                     });
         }

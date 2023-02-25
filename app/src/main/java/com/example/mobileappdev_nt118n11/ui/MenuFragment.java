@@ -179,7 +179,7 @@ public class MenuFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(true);
         builder.setTitle("Xóa món ăn");
-        builder.setMessage("Bạn có muốn xóa món này khỏi cơ sở dữ liệu?");
+        builder.setMessage("Bạn có muốn xóa món này?");
         builder.setPositiveButton("Xác nhận",
                 new DialogInterface.OnClickListener() {
                     @Override

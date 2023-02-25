@@ -110,12 +110,12 @@ public class SignIn extends AppCompatActivity {
 
     private void signin() {
         ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-        mDialog.setMessage("Please waiting....");
+        mDialog.setMessage("Vui lòng đợi....");
         mDialog.show();
 
         if(etUsername.getText().toString().equals("118118118")&&etPassword.getText().toString().equals("NT118.N11"))
         {
-            Toast.makeText(SignIn.this, "Đăng nhập admin thành công!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignIn.this, "Đăng nhập Admin thành công!", Toast.LENGTH_SHORT).show();
             Intent Management = new Intent(SignIn.this,ManagementActivity.class);
             startActivity(Management);
         }
