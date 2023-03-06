@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
 import com.example.mobileappdev_nt118n11.ui.profile.Phone;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,9 +32,11 @@ public class FoodDetailActivity extends AppCompatActivity {
     TextView tvNameDetail, tvTypeDetail, tvPriceDetail, tvDescrDetail;
     Food foodDetail;
     Button btnCart;
+    FloatingActionButton btnFavorite;
     ImageView ivMinusQuantity, ivPlusQuantity;
     TextView tvQuantity;
     private int numberOrder = 1;
+    Database localDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         String id = intent.getStringExtra("idKey");
 
         //Log.i("Key in food detail",id);
-
+        localDB = new Database(this);
         database = FirebaseDatabase.getInstance();
         database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -126,6 +130,31 @@ public class FoodDetailActivity extends AppCompatActivity {
                 if (numberOrder < 10) {
                     numberOrder++;
                     tvQuantity.setText(String.valueOf(numberOrder));
+                }
+            }
+        });
+
+        btnFavorite = findViewById(R.id.btn_add_to_favourite);
+        if (localDB.isFavorites(id)){
+            btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24_fill);
+            Log.i("menuActivity", "onBindViewHolder ở home: "+id+" được yêu thích");
+        }
+        else
+        {
+            Log.i("menuActivity", "onBindViewHolder ở home: "+id+" không được yêu thích");
+        }
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!localDB.isFavorites(id)){
+                    localDB.addToFavorites(foodDetail);
+                    btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24_fill);
+                    Toast.makeText(FoodDetailActivity.this,"Đã thêm "+foodDetail.getName()+" vào yêu thích!", Toast.LENGTH_SHORT);
+                }
+                else{
+                    localDB.removeFromFavorites(id);
+                    btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24);
+                    Toast.makeText(FoodDetailActivity.this,"Đã xóa "+foodDetail.getName()+" khỏi yêu thích!", Toast.LENGTH_SHORT);
                 }
             }
         });

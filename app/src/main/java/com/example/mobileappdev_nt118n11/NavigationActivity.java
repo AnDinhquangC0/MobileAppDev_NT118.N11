@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -23,14 +24,19 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.navigation.ui.ToolbarKt;
 
+import com.example.mobileappdev_nt118n11.Database.Database;
+import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.User;
 import com.example.mobileappdev_nt118n11.databinding.ActivityNavigationBinding;
 import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -99,6 +105,31 @@ public class NavigationActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        Database localDB = new Database(this);
+        localDB.cleanFavorite();
+        ArrayList<Food> foodList = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dbRef = database.getReference().child("Favorite").child(Phone.Key_Phone);
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Food foodModel = dataSnapshot.getValue(Food.class);
+                    String pushkey = dataSnapshot.getKey().toString();
+//                    Log.i("idKey",pushkey);
+//                    //keyList.add(pushkey);
+                    foodModel.setId(pushkey);
+                    //foodList.add(foodModel);
+                    localDB.addToFavorites(foodModel);
+                }
+                dbRef.removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

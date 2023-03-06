@@ -2,7 +2,7 @@ package com.example.mobileappdev_nt118n11;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,54 +16,37 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
-import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHolder> {
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
 
     ArrayList<Food> list;
     Context context;
-    Database localDB;
 
-    public FoodMenuAdapter(ArrayList<Food> list, Context context) {
+    public FavoriteAdapter(ArrayList<Food> list, Context context) {
         this.list = list;
         this.context = context;
-        localDB = new Database(context);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_item,parent,false);
 
         return new ViewHolder(view) ;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodMenuAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FavoriteAdapter.ViewHolder holder, int position) {
 
         Food foodModel = list.get(position);
         Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
         holder.item_name.setText(foodModel.getName());
-        holder.item_type.setText(foodModel.getFoodtype());
         holder.item_price.setText(StrDecimalFormat(foodModel.getPrice()));
-
-        //add Favorites
-
-        if (localDB.isFavorites(foodModel.getId())){
-            holder.item_fav.setImageResource(R.drawable.ic_baseline_favorite_24_fill);
-            Log.i("menuActivity", "onBindViewHolder ở home: "+foodModel.getId()+" được yêu thích");
-        }
-        else
-        {
-            Log.i("menuActivity", "onBindViewHolder ở home: "+foodModel.getId()+" không được yêu thích");
-        }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,42 +63,28 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.ViewHo
 
             }
         });
-
-        holder.item_fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!localDB.isFavorites(foodModel.getId())){
-                    localDB.addToFavorites(foodModel);
-                    holder.item_fav.setImageResource(R.drawable.ic_baseline_favorite_24_fill);
-                    Toast.makeText(context,"Đã thêm "+foodModel.getName()+" vào yêu thích!", Toast.LENGTH_SHORT);
-                }
-                else{
-                    localDB.removeFromFavorites(foodModel.getId());
-                    holder.item_fav.setImageResource(R.drawable.ic_baseline_favorite_24);
-                    Toast.makeText(context,"Đã xóa "+foodModel.getName()+" khỏi yêu thích!", Toast.LENGTH_SHORT);
-                }
-            }
-        });
-        //localDB.close();
     }
-
 
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
 
-        ImageView item_image, item_fav;
-        TextView item_name, item_type, item_price;
+        ImageView item_image;
+        TextView item_name, item_price;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            item_image = (ImageView) itemView.findViewById(R.id.food_image);
-            item_name = (TextView) itemView.findViewById(R.id.food_name);
-            item_type = (TextView) itemView.findViewById(R.id.food_type);
-            item_price = (TextView) itemView.findViewById(R.id.food_price);
-            item_fav = (ImageButton) itemView.findViewById(R.id.btn_fav);
+            item_image = (ImageView) itemView.findViewById(R.id.favorite_image);
+            item_name = (TextView) itemView.findViewById(R.id.favorite_name);
+            item_price = (TextView) itemView.findViewById(R.id.favorite_price);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            contextMenu.add(0,0,getAdapterPosition(),Common.DELETE);
         }
     }
 

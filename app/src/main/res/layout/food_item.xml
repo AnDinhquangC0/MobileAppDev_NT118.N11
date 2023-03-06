@@ -86,6 +86,7 @@
             </LinearLayout>
 
             <ImageButton
+                android:id="@+id/btn_fav"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_baseline_favorite_24"

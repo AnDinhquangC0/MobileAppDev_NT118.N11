@@ -2,6 +2,7 @@ package com.example.mobileappdev_nt118n11;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mobileappdev_nt118n11.AsyncTask.FBDataBindingAsyncTask;
+import com.example.mobileappdev_nt118n11.Database.Database;
 import com.example.mobileappdev_nt118n11.Model.Food;
+import com.example.mobileappdev_nt118n11.ui.profile.Phone;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -104,13 +108,22 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onButtonClicked(int buttonCode) {
 
+
             }
+
         });
 
         loadMenu();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
     //tìm món với từ khóa text
     private void startSearch(CharSequence text) {
+        Database localDB = new Database(getBaseContext());
         Query searchByName = dbRefFoodMenu.orderByChild("Name").equalTo(text.toString());
 
         FirebaseRecyclerOptions<Food> foodOption = new FirebaseRecyclerOptions.Builder<Food>()
@@ -121,6 +134,7 @@ public class SearchActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FoodViewHolder holder, int position, @NonNull Food model) {
                 final Food foodModel = model;
                 final String key = searchAdapter.getRef(position).getKey();
+                foodModel.setId(key);
                 Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
                 holder.item_name.setText(foodModel.getName());
                 holder.item_type.setText(foodModel.getFoodtype());
@@ -133,6 +147,30 @@ public class SearchActivity extends AppCompatActivity {
                         intent.putExtra("idKey", key);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                    }
+                });
+
+                //add Favorites
+                if (localDB.isFavorites(foodModel.getId())){
+                    Log.i("searchActivity", "onBindViewHolder ở startsearch: "+foodModel.getId()+" được yêu thích");
+                    holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24_fill);
+                }
+                else{
+                    Log.i("searchActivity", "onBindViewHolder ở startsearch: "+foodModel.getId()+" không được yêu thích");
+                }
+                holder.item_fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!localDB.isFavorites(foodModel.getId())){
+                            localDB.addToFavorites(foodModel);
+                            holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24_fill);
+                            Toast.makeText(SearchActivity.this,"Đã thêm "+foodModel.getName()+" vào yêu thích!", Toast.LENGTH_SHORT);
+                        }
+                        else{
+                            localDB.removeFromFavorites(foodModel.getId());
+                            holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+                            Toast.makeText(SearchActivity.this,"Đã xóa "+foodModel.getName()+" khỏi yêu thích!", Toast.LENGTH_SHORT);
+                        }
                     }
                 });
             }
@@ -145,6 +183,7 @@ public class SearchActivity extends AppCompatActivity {
         };
         searchAdapter.startListening();
         rcvFoodList.setAdapter(searchAdapter);
+        localDB.close();
     }
     // tải menu khi mới mở giao diện search
     private void loadMenu(){
@@ -156,6 +195,7 @@ public class SearchActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FoodViewHolder holder, int position, @NonNull Food model) {
                 final Food foodModel = model;
                 final String key = menuAdapter.getRef(position).getKey();
+                foodModel.setId(key);
                 Picasso.get().load(foodModel.getImage()).placeholder(R.drawable.background).into(holder.item_image);
                 holder.item_name.setText(foodModel.getName());
                 holder.item_type.setText(foodModel.getFoodtype());
@@ -170,6 +210,32 @@ public class SearchActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+
+                //add Favorites
+                Database localDB = new Database(getBaseContext());
+                if (localDB.isFavorites(foodModel.getId())){
+                    Log.i("searchActivity", "onBindViewHolder ở loadmenu: "+foodModel.getId()+" được yêu thích");
+                    holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24_fill);
+                }
+                else{
+                    Log.i("searchActivity", "onBindViewHolder ở loadmenu: "+foodModel.getId()+" không được yêu thích");
+                }
+                holder.item_fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!localDB.isFavorites(foodModel.getId())){
+                            localDB.addToFavorites(foodModel);
+                            holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24_fill);
+                            Toast.makeText(SearchActivity.this,"Đã thêm "+foodModel.getName()+" vào yêu thích!", Toast.LENGTH_SHORT);
+                        }
+                        else{
+                            localDB.removeFromFavorites(foodModel.getId());
+                            holder.item_fav.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+                            Toast.makeText(SearchActivity.this,"Đã xóa "+foodModel.getName()+" khỏi yêu thích!", Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
+                localDB.close();
             }
 
             @NonNull

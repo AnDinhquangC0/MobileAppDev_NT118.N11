@@ -22,6 +22,7 @@ import com.example.mobileappdev_nt118n11.R;
 import com.example.mobileappdev_nt118n11.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment {
             View root = inflater.inflate(R.layout.fragment_home, container, false);
 
             recyclerFoodList = new ArrayList<>();
-            recyclerAdapter = new FoodMenuAdapter(recyclerFoodList, getActivity().getApplicationContext());
+            recyclerAdapter = new FoodMenuAdapter(recyclerFoodList, getActivity().getBaseContext());
 
             rcvFoodList = (RecyclerView) root.findViewById(R.id.rcv_home_food_menu);
             rcvFoodList.setHasFixedSize(true);
@@ -66,7 +67,8 @@ public class HomeFragment extends Fragment {
             rcvFoodList.setAdapter(recyclerAdapter);
 
             database = FirebaseDatabase.getInstance();
-            database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference dbRef = database.getReference().child("Food");
+            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -78,6 +80,7 @@ public class HomeFragment extends Fragment {
                         recyclerFoodList.add(foodModel);
                     }
                     recyclerAdapter.notifyDataSetChanged();
+                    dbRef.removeEventListener(this);
                 }
 
                 @Override
@@ -91,9 +94,45 @@ public class HomeFragment extends Fragment {
             throw e;}
     }
 
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        recyclerFoodList.clear();
+//
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        recyclerFoodList = new ArrayList<>();
+//        recyclerAdapter = new FoodMenuAdapter(recyclerFoodList, getActivity().getBaseContext());
+//        rcvFoodList.setAdapter(recyclerAdapter);
+//        database.getReference().child("Food").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    Food foodModel = dataSnapshot.getValue(Food.class);
+//                    String pushkey = dataSnapshot.getKey().toString();
+//                    Log.i("idKey", pushkey);
+//                    //keyList.add(pushkey);
+//                    foodModel.setId(pushkey);
+//                    recyclerFoodList.add(foodModel);
+//                }
+//                recyclerAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+
 
 }

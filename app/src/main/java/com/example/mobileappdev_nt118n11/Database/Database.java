@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import com.example.mobileappdev_nt118n11.Model.Food;
 import com.example.mobileappdev_nt118n11.Model.Order;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -105,32 +106,77 @@ public class Database extends SQLiteAssetHelper {
                 order.getProductId());
         sqlDB.execSQL(query);
     }
-     public void addToFavorites(String foodId){
+     public void addToFavorites(Food food){
         SQLiteDatabase db=getReadableDatabase();
-        String query = String.format("INSERT INTO Favorites (FoodId) VALUES ('%s');",foodId);
-
+        String query = String.format("INSERT INTO Favorites (FoodId,FoodName,FoodImage,FoodDescr,FoodPrice,FoodType) " +
+                "VALUES ('%s','%s','%s','%s','%s','%s');",
+                food.getId(),
+                food.getName(),
+                food.getImage(),
+                food.getDescr(),
+                food.getPrice(),
+                food.getFoodtype());
         db.execSQL(query);
     }
 
-    public void removeToFavorites(String foodId){
+    public void removeFromFavorites(String foodId){
         SQLiteDatabase db=getReadableDatabase();
-        String query = String.format("DELETE FROM Favorites WHERE  FoodId='%s';", foodId);
+        String query = String.format("DELETE FROM Favorites WHERE FoodId='%s';", foodId);
         db.execSQL(query);
     }
 
     public boolean isFavorites(String foodId){
         SQLiteDatabase db=getReadableDatabase();
-        String query = String.format("SELECT * FROM Favorites WHERE  FoodId='%s' ;", foodId);
+        String query = String.format("SELECT * FROM Favorites WHERE FoodId='%s';", foodId);
         Cursor cursor = db.rawQuery(query,null);
         if(cursor.getCount() <= 0){
             cursor.close();
             return false;
         }
         cursor.close();
-        return false;
+        return true;
     }
 
+    public ArrayList<Food> getAllFavorites(){
+        SQLiteDatabase sqlDB = getReadableDatabase();
+        SQLiteQueryBuilder queryBuild = new SQLiteQueryBuilder();
+        String[] sqlSelect = {"FoodId","FoodName","FoodImage","FoodDescr","FoodPrice","FoodType"};
+        String sqlTable = "Favorites";
 
+        queryBuild.setTables(sqlTable);
+        Cursor c = queryBuild.query(sqlDB,sqlSelect,null,null,null,null,null);
+
+        final ArrayList<Food> result = new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+                int idCol = c.getColumnIndex("FoodId");
+                int nameCol = c.getColumnIndex("FoodName");
+                int descrCol = c.getColumnIndex("FoodDescr");
+                int priceCol = c.getColumnIndex("FoodPrice");
+                int imgCol = c.getColumnIndex("FoodImage");
+                int typeCol = c.getColumnIndex("FoodType");
+
+                if (typeCol != -1 && idCol != -1 && nameCol!=-1 && descrCol!=-1 && priceCol!=-1 && imgCol!=-1){
+                    Food newfood = new Food(c.getString(nameCol),
+                            c.getString(imgCol),
+                            c.getString(descrCol),
+                            c.getString(priceCol),
+                            c.getString(typeCol));
+                    newfood.setId(c.getString(idCol));
+                    result.add(newfood);
+                }
+
+                else
+                    Log.e("databases", "cant get a product in order because column equal -1");
+            }while(c.moveToNext());
+        }
+        return result;
+    }
+    public void cleanFavorite(){
+        SQLiteDatabase sqlDB = getReadableDatabase();
+        String query = String.format("DELETE FROM Favorites");
+        sqlDB.execSQL(query);
+    }
 
 
 }
